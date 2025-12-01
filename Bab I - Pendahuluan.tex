@@ -7,34 +7,32 @@
 % NOTES: cek citation paragraf 1, tambahkan citation untuk paragraf lain
 \section{Latar Belakang}
 
-Ultra-Marathon merupakan salah satu cabang olahraga lari yang kini kian populer \cite{ronto2024}.
+Ultra-Marathon merupakan salah satu cabang olahraga lari yang kini kian populer.
 Hal ini ditunjukkan dengan kegiatan ITB Ultra-Marathon yang jumlah pesertanya terus meningkat sejak pertama kali diselenggarakan pada tahun 2017 \cite{hafizh2025}.
 Seiring dengan meningkatnya partisipasi, kebutuhan akan sistem pelacakan pelari menjadi semakin penting.
 Sistem tersebut berperan dalam memastikan keselamatan, performa, dan pengalaman peserta secara keseluruhan, serta memberikan interaktivitas bagi panitia dan pendukung acara \cite{hochreiter2024}.
 
 Dalam penyelenggaraan ITB Ultra-Marathon saat ini, pelacakan posisi peserta masih dilakukan secara manual.
-Kondisi ini menyulitkan panitia dalam memantau lokasi pelari secara real-time dan menyebabkan koordinasi antarpos menjadi kurang efisien.
+Kondisi ini menyulitkan panitia dalam memantau lokasi pelari secara \textit{real-time} dan menyebabkan koordinasi antarpos menjadi kurang efisien.
 Dampaknya terlihat pada ketidakakuratan pengaturan mobil penjemput, yang kerap terlambat tiba di titik pengambilan peserta.
 Ketiadaan sistem pemantauan khusus juga membuat panitia dan peserta mengandalkan aplikasi umum seperti Google Maps untuk memprediksi estimasi waktu kedatangan (ETA), meskipun aplikasi tersebut tidak dirancang untuk konteks pelari.
 Permasalahan ini menegaskan perlunya mekanisme pelacakan yang terintegrasi, akurat, dan adaptif terhadap kebutuhan operasional marathon.
 
-Rute marathon terdiri dari 16 segmen, dengan titik check point (CP) dan water station (WS) yang menjadi patokan untuk pemantauan real-time.
-Selain memantau posisi pelari, sistem juga perlu mendukung penghitungan waktu terhadap batas maksimal (Cut-Off Time) di setiap CP/WS untuk membantu panitia menentukan status peserta, apakah finisher atau Did Not Finish (DNF).
-Pelari dapat mengikuti kategori individu maupun relay, sehingga sistem harus mampu memantau pergantian anggota tim secara real-time dan menampilkan status anggota aktif di setiap segmen.
+Rute marathon terdiri dari 16 segmen, dengan titik \textit{check point} (CP) dan \textit{water station} (WS) yang menjadi patokan untuk pemantauan \textit{real-time}.
+Pelari dapat mengikuti kategori individu maupun relay, sehingga sistem harus mampu memantau pergantian anggota tim secara \textit{real-time} dan menampilkan status anggota aktif di setiap segmen.
 Informasi posisi dan ETA pelari juga dapat dimanfaatkan panitia untuk mengatur transportasi dan shuttle support di jalur lomba.
 
-Sejumlah solusi pelacakan posisi telah tersedia, seperti Google Maps Location Sharing, Glympse, atau fitur Live Location pada aplikasi \textit{instant messaging}.
-Namun, layanan tersebut hanya ditujukan untuk pelacakan individu dan tidak dirancang untuk menangani pemantauan ribuan peserta secara simultan.
-Selain itu, algoritma ETA pada layanan tersebut umumnya berorientasi pada pergerakan kendaraan sehingga tidak relevan untuk memodelkan perilaku pelari.
+Sistem komersial seperti MyLaps, ChronoTrack, dan Race Result menggunakan teknologi chip timing berbasis RFID untuk merekam waktu pelari secara otomatis di titik start, checkpoint, dan finish \cite{RaceID2022}.
+Meskipun akurat dalam pencatatan waktu di titik-titik tertentu, sistem ini belum mendukung pemantauan posisi pelari secara kontinu di sepanjang lintasan.
+Keterbatasan ini menghambat kemampuan penyelenggara untuk melakukan tracking secara \textit{real-time} dan memperkirakan ETA.
 
-Di sisi lain, platform profesional seperti MYLAPS LiveTrack, RaceResult, dan Sporthive memang menawarkan solusi pelacakan untuk acara lari berskala besar.
-Akan tetapi, sistem-sistem tersebut bersifat tertutup, memerlukan perangkat khusus, dan memiliki biaya operasional yang cukup tinggi, sehingga kurang sesuai dengan skala kegiatan ITB Marathon.
-Selain itu, fleksibilitas untuk menyesuaikan sistem dengan alur kerja panitia sangat terbatas.
-Oleh karena itu, meskipun solusi industri telah tersedia, tingkat keterbukaan, biaya, dan kemampuan integrasi menjadi hambatan utama dalam penerapannya.
+Sistem berbasis LoRaWAN dan GPS juga telah digunakan untuk pelacakan pelari dalam skala besar.
+Pada uji coba dengan lebih dari 35.000 peserta, sistem ini mampu memperbarui posisi setiap 30 detik melalui \textit{mobile LoRaWAN gateway} pada kendaraan operasional, menunjukkan potensi untuk pelacakan \textit{real-time}.
+Namun, LoRaWAN memerlukan arsitektur jaringan yang efisien dan terdistribusi untuk menjaga keandalan dan skalabilitas pengiriman data dalam sistem pelacakan berskala besar \cite{hochreiter2024}.
 
-Metode prediksi ETA yang ada saat ini juga belum mampu memenuhi kebutuhan event marathon secara akurat.
-Layanan navigasi umum tidak mempertimbangkan pola pace pelari, kondisi rute, elevasi lintasan, serta dinamika performa dari waktu ke waktu.
-Selain itu, belum tersedia solusi terbuka yang mampu memproses data ribuan pelari dan menghasilkan prediksi secara real-time dengan jaminan skalabilitas dan ketersediaan layanan yang tinggi.
+Mengenai prediksi ETA, metode yang tersedia saat ini umumnya dikembangkan untuk kendaraan, sehingga pendekatannya tidak sesuai untuk konteks pelari.
+Sistem ETA tersebut tidak mempertimbangkan pola pace pelari, karakteristik rute, elevasi lintasan, maupun dinamika performa yang berubah sepanjang waktu.
+Selain itu, metode ETA yang ada umumnya tidak dirancang untuk memproses data dari peserta dalam jumlah besar.
 
 Keterbatasan berbagai solusi tersebut menunjukkan bahwa diperlukan sistem pelacakan yang dirancang khusus untuk kebutuhan ITB Marathon.
 Oleh karena itu, penelitian ini mengusulkan perancangan dan implementasi \textit{backend} untuk \textit{Real-Time Runner Tracking} dan \textit{ETA Prediction} yang mampu beroperasi secara terukur (\textit{scalable}) serta memiliki tingkat ketersediaan layanan yang tinggi (\textit{high availability}).
@@ -46,7 +44,7 @@ Sistem ini diharapkan dapat menyediakan informasi posisi dan prediksi waktu keda
 Berdasarkan latar belakang yang telah diuraikan, rumusan masalah dalam penelitian ini adalah sebagai berikut.
 
 \begin{enumerate}
-    \item Bagaimana merancang dan mengimplementasikan sistem \textit{backend} untuk \textit{Real-Time Runner Tracking} yang mampu memantau posisi ribuan peserta ITB Marathon secara akurat dan real-time, termasuk pemantauan per segmen, check point, dan status peserta (\textit{finisher} atau \textit{Did Not Finish})?
+    \item Bagaimana merancang dan mengimplementasikan sistem \textit{backend} untuk \textit{Real-Time Runner Tracking} yang mampu memantau posisi ribuan peserta ITB Marathon secara akurat dan \textit{real-time}, termasuk pemantauan per segmen, check point, dan status peserta (\textit{finisher} atau \textit{Did Not Finish})?
  
     \item Bagaimana merancang dan mengimplementasikan modul \textit{ETA Prediction} yang mampu menghasilkan estimasi waktu kedatangan pelari secara relevan dengan karakteristik pergerakan pelari dan kondisi rute?
  
@@ -63,7 +61,7 @@ Berdasarkan latar belakang yang telah diuraikan, rumusan masalah dalam penelitia
 Berdasarkan rumusan masalah yang telah disebutkan sebelumnya, tujuan dari penelitian ini adalah sebagai berikut.
 
 \begin{enumerate}
-    \item Menghasilkan rancangan dan implementasi sistem \textit{backend} untuk \textit{Real-Time Runner Tracking} yang mampu memantau posisi ribuan peserta ITB Marathon secara akurat dan real-time, termasuk pemantauan per segmen, check point, dan status peserta (\textit{finisher}/DNF).
+    \item Menghasilkan rancangan dan implementasi sistem \textit{backend} untuk \textit{Real-Time Runner Tracking} yang mampu memantau posisi ribuan peserta ITB Marathon secara akurat dan \textit{real-time}, termasuk pemantauan per segmen, check point, dan status peserta (\textit{finisher}/DNF).
  
     \item Menghasilkan modul \textit{ETA Prediction} yang mampu memberikan estimasi waktu kedatangan pelari secara relevan dengan pola pergerakan pelari, kondisi rute, dan dinamika performa pelari.
  
@@ -75,7 +73,7 @@ Berdasarkan rumusan masalah yang telah disebutkan sebelumnya, tujuan dari peneli
 Kriteria keberhasilan dari penelitian ini ditetapkan sebagai berikut.
 
 \begin{enumerate}
-    \item Sistem \textit{Real-Time Runner Tracking} mampu memperbarui posisi pelari secara real-time dengan tingkat keterlambatan pembaruan (update delay) yang berada dalam batas operasional yang dapat diterima oleh panitia.
+    \item Sistem \textit{Real-Time Runner Tracking} mampu memperbarui posisi pelari secara \textit{real-time} dengan tingkat keterlambatan pembaruan (update delay) yang berada dalam batas operasional yang dapat diterima oleh panitia.
  
     \item Modul \textit{ETA Prediction} mampu menghasilkan estimasi waktu kedatangan pelari dengan tingkat kesalahan prediksi yang rendah berdasarkan uji validasi pada data pergerakan pelari.
  
@@ -99,7 +97,7 @@ Dalam penelitian ini, terdapat beberapa batasan yang digunakan untuk memfokuskan
     \item Sistem \textit{backend} yang dikembangkan dibatasi pada fungsionalitas inti yang diperlukan untuk mendukung proses pelacakan dan prediksi, termasuk:  
     \begin{itemize}
         \item penerimaan dan pemrosesan data lokasi pelari.
-        \item penyimpanan data posisi secara real-time.
+        \item penyimpanan data posisi secara \textit{real-time}.
         \item penyediaan \textit{API} untuk konsumsi \textit{frontend}.
         \item modul prediksi waktu kedatangan (ETA).
         \item pemantauan status pelari per segmen dan Checkpoint/Water Station.
@@ -124,28 +122,54 @@ Dalam penelitian ini, terdapat beberapa batasan yang digunakan untuk memfokuskan
 % --- Metodologi Pengerjaan TA ---
 \section{Metodologi}
 
-Pelaksanaan tugas akhir ini mengikuti pendekatan \textit{Software Development Life Cycle (SDLC)} untuk memastikan pengembangan backend \textit{Real-Time Runner Tracking} dan \textit{ETA Prediction} dilakukan secara sistematis dan terdokumentasi dengan baik. Tahapan yang akan dilalui adalah sebagai berikut:
+Metodologi yang digunakan pada penelitian ini adalah pendekatan \textit{Waterfall Model} dari \textit{Software Development Life Cycle (SDLC)}.  
+Pemilihan metodologi ini didasarkan pada batasan ruang lingkup sistem yang telah ditetapkan serta kebutuhan tahapan pengembangan yang sistematis dan terstruktur.  
+Pengembangan dilakukan secara linear dan sekuensial, di mana setiap tahap harus diselesaikan sebelum melanjutkan ke tahap berikutnya, sehingga memudahkan pengukuran progres dan evaluasi hasil.
+Berikut tahapan-tahapan yang dilakukan:
 
 \begin{enumerate}
-    \item Perencanaan\\
-    Pada tahap ini dilakukan penentuan ruang lingkup, tujuan, batasan masalah, dan kriteria keberhasilan sistem.
-    Kegiatan meliputi identifikasi permasalahan dalam penyelenggaraan ITB Ultra-Marathon, fokus pada pelacakan pelari dan prediksi ETA, serta perencanaan metodologi penelitian.
-
     \item Analisis Kebutuhan\\
-    Tahap ini mencakup pengumpulan informasi terkait kebutuhan fungsional dan non-fungsional sistem backend.
-    Metode yang digunakan meliputi studi literatur, observasi, wawancara, serta analisis data pendukung untuk menentukan modul-modul utama sistem, seperti pengolahan data posisi pelari, penyimpanan real-time, dan modul prediksi ETA.
+    Pada tahap ini dilakukan pengumpulan dan analisis kebutuhan sistem backend untuk \textit{Real-Time Runner Tracking} dan \textit{ETA Prediction}.  
+    Kegiatan dilakukan melalui studi literatur terkait sistem pelacakan, algoritma prediksi ETA, serta arsitektur backend yang scalable dan memiliki ketersediaan layanan yang tinggi.  
+    Selain itu, dilakukan observasi dan wawancara dengan pengguna untuk memahami alur operasional, pembagian segmen lintasan, \textit{Water Station}, dan kebutuhan data posisi peserta.  
+    Hasil dari tahap ini adalah spesifikasi kebutuhan fungsional dan non-fungsional sistem.
 
     \item Perancangan Sistem\\
-    Pada tahap perancangan dibuat arsitektur backend, diagram alur data, dan struktur penyimpanan informasi yang akan diimplementasikan.
-    Desain ini bertujuan memudahkan proses pengembangan dan memastikan sistem dapat diukur skalabilitas dan ketersediaannya.
+    Berdasarkan hasil analisis kebutuhan, tahap perancangan mencakup penyusunan arsitektur sistem baik secara high-level maupun low-level, model database, spesifikasi API, \textit{sequence diagram}, serta arsitektur deployment yang dirancang untuk mendukung skalabilitas dan \textit{high availability}.
+    Selain itu, perancangan juga mempertimbangkan rencana pengujian, pipeline deployment, dan mekanisme observability untuk memudahkan monitoring dan evaluasi sistem.
 
-    \item Implementasi\\
-    Tahap implementasi mencakup pengembangan modul backend sesuai desain yang telah disusun, termasuk penerimaan data lokasi pelari, pemrosesan posisi secara real-time, penyediaan API untuk frontend, dan perhitungan prediksi ETA.
+    \item Implementasi \\
+    Tahap implementasi mencakup pengembangan backend sesuai desain yang telah dibuat.  
+    Proses dimulai dengan setup lingkungan pengembangan dan infrastruktur, kemudian diikuti dengan implementasi modul penerimaan dan pemrosesan data posisi pelari secara \textit{real-time}, penyimpanan data, penyediaan API, serta perhitungan prediksi ETA.  
+    Setiap modul dikembangkan secara sistematis agar backend berfungsi secara optimal dan sesuai spesifikasi.
 
-    \item Pengujian\\
-    Pengujian dilakukan untuk memastikan sistem berjalan sesuai spesifikasi, meliputi uji fungsional dan pengujian kinerja (\textit{throughput}, \textit{latency}, \textit{error rate}, dan \textit{resource utilization}).
-    Pengujian menggunakan data simulasi yang menyerupai skala peserta ITB Ultra-Marathon.
+    \item Deployment \\
+    Tahap ini mencakup penyebaran sistem backend pada lingkungan \textit{cloud} 
+    dengan arsitektur deployment yang mendukung (\textit{high availability}) dan skalabilitas.
+    Konfigurasi sistem dirancang agar dapat berjalan stabil saat menerima beban ribuan peserta. 
+    Tahap ini juga memastikan backend dapat diintegrasikan dengan frontend dan komponen lain untuk tahap pengujian.
 
-    \item Deployment\\
-    Tahap ini meliputi penyediaan sistem backend untuk demonstrasi prototipe, integrasi dengan frontend, serta penyusunan dokumentasi.
+    \item Pengujian \\
+    Pengujian dilakukan untuk memastikan sistem berjalan sesuai spesifikasi.
+    Tahap pengujian memiliki dua fokus utama.
+
+    \begin{enumerate}
+        \item Pengujian Fungsional \\
+        Pengujian fungsional dilakukan untuk memastikan seluruh kebutuhan fungsional yang telah didefinisikan pada tahap perancangan berjalan sesuai spesifikasi. 
+        Tahap ini mencakup pengecekan alur data, integrasi antar modul, validasi input dan output, serta mekanisme pelacakan dan perhitungan ETA yang menjadi inti dari sistem backend. 
+            
+        \item Pengujian Non-Fungsional \\
+        Pengujian non-fungsional difokuskan pada evaluasi kinerja sistem dalam menangani beban tinggi dan menjaga kualitas layanan.  
+        Metode yang digunakan meliputi load testing dan simulasi data ribuan peserta.  
+        Metrik yang diukur mencakup \textit{throughput}, \textit{latency}, \textit{error rate}, dan \textit{resource utilization}.  
+        Hasil pengujian didokumentasikan secara detail untuk mendukung evaluasi efektivitas dan skalabilitas sistem.
+    \end{enumerate}
+
+    \item Evaluasi \\
+    Tahap evaluasi meliputi analisis hasil pengujian untuk menilai efektivitas sistem backend.  
+    Analisis mencakup perbandingan performa prediksi ETA, akurasi data posisi pelari, dan pemenuhan kriteria keberhasilan yang telah ditetapkan.  
+    Hasil evaluasi digunakan sebagai dasar dokumentasi temuan, pembelajaran, dan rekomendasi perbaikan sistem.
+
 \end{enumerate}
+
+

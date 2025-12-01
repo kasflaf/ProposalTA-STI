@@ -1,16 +1,19 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [0] Config.pm:311> INFO - Logfile is 'ProposalTA.blg'
-[80] biber:340> INFO - === Mon Dec  1, 2025, 17:11:27
-[99] Biber.pm:420> INFO - Reading 'ProposalTA.bcf'
-[287] Biber.pm:994> INFO - Found 6 citekeys in bib section 0
-[307] Biber.pm:4463> INFO - Processing section 0
-[321] Biber.pm:4654> INFO - Looking for bibtex file 'daftar-pustaka.bib' for section 0
-[322] bibtex.pm:1713> INFO - LaTeX decoding ...
-[344] bibtex.pm:1519> INFO - Found BibTeX data source 'daftar-pustaka.bib'
-[416] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'variable = shifted' with 'variable = non-ignorable'
-[416] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'level = 4' with 'level = 2'
-[416] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[416] Biber.pm:4283> INFO - Sorting list 'cms/global//global/global/global' of type 'entry' with template 'cms' and locale 'indonesian'
-[416] Biber.pm:4289> INFO - No sort tailoring available for locale 'indonesian'
-[427] bbl.pm:676> INFO - Writing 'ProposalTA.bbl' with encoding 'UTF-8'
-[430] bbl.pm:779> INFO - Output to ProposalTA.bbl
+[90] biber:340> INFO - === Tue Dec  2, 2025, 01:59:21
+[115] Biber.pm:420> INFO - Reading 'ProposalTA.bcf'
+[271] Biber.pm:994> INFO - Found 6 citekeys in bib section 0
+[284] Biber.pm:4463> INFO - Processing section 0
+[295] Biber.pm:4654> INFO - Looking for bibtex file 'daftar-pustaka.bib' for section 0
+[298] bibtex.pm:1713> INFO - LaTeX decoding ...
+[315] bibtex.pm:1519> INFO - Found BibTeX data source 'daftar-pustaka.bib'
+[387] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'variable = shifted' with 'variable = non-ignorable'
+[387] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[387] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'level = 4' with 'level = 2'
+[387] Biber.pm:4283> INFO - Sorting list 'cms/global//global/global/global' of type 'entry' with template 'cms' and locale 'indonesian'
+[387] Biber.pm:4289> INFO - No sort tailoring available for locale 'indonesian'
+[398] bbl.pm:676> INFO - Writing 'ProposalTA.bbl' with encoding 'UTF-8'
+[400] bbl.pm:779> INFO - Output to ProposalTA.bbl
+[400] Biber.pm:131> WARN - legacy month field 'September 28' in entry 'hafizh2025' is not an integer - this will probably not sort properly.
+[401] Biber.pm:131> WARN - legacy month field 'August 26' in entry 'RaceID2022' is not an integer - this will probably not sort properly.
+[401] Biber.pm:133> INFO - WARNINGS: 2

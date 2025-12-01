@@ -38,59 +38,35 @@
       \verb https://id.wikisource.org/wiki/Buku_Praktis_Bahasa_Indonesia_1/Kata
       \endverb
     \endentry
-    \entry{hafizh2025}{article}{}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=05973d3466b3eea6df2607c137981ad2}{%
-           family={Hafizh},
-           familyi={H\bibinitperiod},
-           given={Ahmad},
-           giveni={A\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{05973d3466b3eea6df2607c137981ad2}
-      \strng{fullhash}{05973d3466b3eea6df2607c137981ad2}
-      \strng{fullhashraw}{05973d3466b3eea6df2607c137981ad2}
-      \strng{bibnamehash}{05973d3466b3eea6df2607c137981ad2}
-      \strng{authorbibnamehash}{05973d3466b3eea6df2607c137981ad2}
-      \strng{authornamehash}{05973d3466b3eea6df2607c137981ad2}
-      \strng{authorfullhash}{05973d3466b3eea6df2607c137981ad2}
-      \strng{authorfullhashraw}{05973d3466b3eea6df2607c137981ad2}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
-      \field{journaltitle}{Indonesian Sports Review}
-      \field{title}{ITB Ultra-Marathon Participation Growth Analysis}
-      \field{year}{2025}
-    \endentry
     \entry{hochreiter2024}{article}{}{}
       \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=96115331c2b8889c9ee513a232971b7c}{%
+        {{un=0,uniquepart=base,hash=df7486f41bef0110b4b3ff1512667b63}{%
            family={Hochreiter},
            familyi={H\bibinitperiod},
-           given={Stefan},
-           giveni={S\bibinitperiod},
+           given={Dominik},
+           giveni={D\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{96115331c2b8889c9ee513a232971b7c}
-      \strng{fullhash}{96115331c2b8889c9ee513a232971b7c}
-      \strng{fullhashraw}{96115331c2b8889c9ee513a232971b7c}
-      \strng{bibnamehash}{96115331c2b8889c9ee513a232971b7c}
-      \strng{authorbibnamehash}{96115331c2b8889c9ee513a232971b7c}
-      \strng{authornamehash}{96115331c2b8889c9ee513a232971b7c}
-      \strng{authorfullhash}{96115331c2b8889c9ee513a232971b7c}
-      \strng{authorfullhashraw}{96115331c2b8889c9ee513a232971b7c}
+      \strng{namehash}{df7486f41bef0110b4b3ff1512667b63}
+      \strng{fullhash}{df7486f41bef0110b4b3ff1512667b63}
+      \strng{fullhashraw}{df7486f41bef0110b4b3ff1512667b63}
+      \strng{bibnamehash}{df7486f41bef0110b4b3ff1512667b63}
+      \strng{authorbibnamehash}{df7486f41bef0110b4b3ff1512667b63}
+      \strng{authornamehash}{df7486f41bef0110b4b3ff1512667b63}
+      \strng{authorfullhash}{df7486f41bef0110b4b3ff1512667b63}
+      \strng{authorfullhashraw}{df7486f41bef0110b4b3ff1512667b63}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{author}
-      \field{journaltitle}{Sports Technology Journal}
-      \field{title}{Interactive Tracking Systems for Distance Running Events}
+      \field{journaltitle}{Multidisciplinary Digital Publishing Institute (MDPI)}
+      \field{title}{Athlete Tracking at a Marathon Event with LoRa: A Performance Evaluation with Mobile Gateways}
       \field{year}{2024}
+      \verb{doi}
+      \verb 10.1016/j.jom.2023.01.005
+      \endverb
     \endentry
     \entry{laudon2020}{book}{}{}
       \name{author}{2}{}{%
@@ -130,6 +106,52 @@
       \field{title}{Sistem Informasi Manajemen}
       \field{year}{2020}
     \endentry
+    \entry{hafizh2025}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=82974038142d0705731072fa94ce7baa}{%
+           family={M.\bibnamedelimi Naufal\bibnamedelima Hafizh},
+           familyi={M\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={S.S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=82974038142d0705731072fa94ce7baa}{%
+           family={M.\bibnamedelimi Naufal\bibnamedelima Hafizh},
+           familyi={M\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={S.S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{82974038142d0705731072fa94ce7baa}
+      \strng{fullhash}{82974038142d0705731072fa94ce7baa}
+      \strng{fullhashraw}{82974038142d0705731072fa94ce7baa}
+      \strng{bibnamehash}{82974038142d0705731072fa94ce7baa}
+      \strng{authorbibnamehash}{82974038142d0705731072fa94ce7baa}
+      \strng{authornamehash}{82974038142d0705731072fa94ce7baa}
+      \strng{authorfullhash}{82974038142d0705731072fa94ce7baa}
+      \strng{authorfullhashraw}{82974038142d0705731072fa94ce7baa}
+      \strng{editorbibnamehash}{82974038142d0705731072fa94ce7baa}
+      \strng{editornamehash}{82974038142d0705731072fa94ce7baa}
+      \strng{editorfullhash}{82974038142d0705731072fa94ce7baa}
+      \strng{editorfullhashraw}{82974038142d0705731072fa94ce7baa}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{ITB Official Website}
+      \field{month}{9}
+      \field{note}{Accessed November 30, 2025}
+      \field{title}{wondr ITB Ultra Marathon 2025 Sukses Digelar, Alumni sampai Guru SD Turut Menyumbang untuk Dana Lestari}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://itb.ac.id/berita/wondr-itb-ultra-marathon-2025-sukses-digelar-alumni-hingga-guru-sd-turut-menyumbang-untuk-dana-lestari/62873
+      \endverb
+      \verb{url}
+      \verb https://itb.ac.id/berita/wondr-itb-ultra-marathon-2025-sukses-digelar-alumni-hingga-guru-sd-turut-menyumbang-untuk-dana-lestari/62873
+      \endverb
+    \endentry
     \entry{pressman2019}{book}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=4d3f81788d99cf425c4b6e0a454baab0}{%
@@ -162,32 +184,40 @@
       \field{title}{Rekayasa Perangkat Lunak: Pendekatan Praktisi}
       \field{year}{2019}
     \endentry
-    \entry{ronto2024}{article}{}{}
+    \entry{RaceID2022}{article}{}{}
       \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=cf60c606622854748e3866f2c745ecae}{%
-           family={Ronto},
-           familyi={R\bibinitperiod},
-           given={John},
-           giveni={J\bibinitperiod},
+        {{un=0,uniquepart=base,hash=ebd5e3569c1e604e1c5d2cf5039a1929}{%
+           family={Sjöbeck},
+           familyi={S\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{cf60c606622854748e3866f2c745ecae}
-      \strng{fullhash}{cf60c606622854748e3866f2c745ecae}
-      \strng{fullhashraw}{cf60c606622854748e3866f2c745ecae}
-      \strng{bibnamehash}{cf60c606622854748e3866f2c745ecae}
-      \strng{authorbibnamehash}{cf60c606622854748e3866f2c745ecae}
-      \strng{authornamehash}{cf60c606622854748e3866f2c745ecae}
-      \strng{authorfullhash}{cf60c606622854748e3866f2c745ecae}
-      \strng{authorfullhashraw}{cf60c606622854748e3866f2c745ecae}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \strng{namehash}{ebd5e3569c1e604e1c5d2cf5039a1929}
+      \strng{fullhash}{ebd5e3569c1e604e1c5d2cf5039a1929}
+      \strng{fullhashraw}{ebd5e3569c1e604e1c5d2cf5039a1929}
+      \strng{bibnamehash}{ebd5e3569c1e604e1c5d2cf5039a1929}
+      \strng{authorbibnamehash}{ebd5e3569c1e604e1c5d2cf5039a1929}
+      \strng{authornamehash}{ebd5e3569c1e604e1c5d2cf5039a1929}
+      \strng{authorfullhash}{ebd5e3569c1e604e1c5d2cf5039a1929}
+      \strng{authorfullhashraw}{ebd5e3569c1e604e1c5d2cf5039a1929}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{author}
-      \field{journaltitle}{Journal of Endurance Sports}
-      \field{title}{Trends in Global Ultra-Marathon Participation}
-      \field{year}{2024}
+      \field{journaltitle}{RaceID}
+      \field{month}{8}
+      \field{note}{Accessed Desember 1, 2025}
+      \field{title}{How Does an RFID Chip Timing System Work?}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://raceid.com/organizer/timing/how-does-an-rfid-chip-timing-system-work/
+      \endverb
+      \verb{url}
+      \verb https://raceid.com/organizer/timing/how-does-an-rfid-chip-timing-system-work/
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
