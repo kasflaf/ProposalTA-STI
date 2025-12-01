@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2025.11.4)  1 DEC 2025 10:33
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2025.11.4)  1 DEC 2025 10:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1059,22 +1059,22 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 ] (./Bab I - Pendahuluan.tex
 Bab I.
 
-Underfull \hbox (badness 1742) in paragraph at lines 13--18
+Underfull \hbox (badness 1742) in paragraph at lines 14--19
 \TU/TimesNewRoman(0)/m/n/12 lokasi pelari secara real-time dan menyebabkan koordinasi antarpos menjadi
  []
 
 
-Underfull \hbox (badness 1810) in paragraph at lines 13--18
+Underfull \hbox (badness 1810) in paragraph at lines 14--19
 \TU/TimesNewRoman(0)/m/n/12 kurang efisien. Dampaknya terlihat pada ketidakakuratan pengaturan mobil
  []
 
 
-Underfull \hbox (badness 1248) in paragraph at lines 19--22
+Underfull \hbox (badness 1248) in paragraph at lines 20--23
 \TU/TimesNewRoman(0)/m/n/12 Sharing, Glympse, atau fitur Live Location pada aplikasi \TU/TimesNewRoman(0)/m/it/12 instant messaging\TU/TimesNewRoman(0)/m/n/12 .
  []
 
 
-Underfull \hbox (badness 1292) in paragraph at lines 23--27
+Underfull \hbox (badness 1292) in paragraph at lines 24--28
 \TU/TimesNewRoman(0)/m/n/12 telah tersedia, tingkat keterbukaan, biaya, dan kemampuan integrasi menjadi
  []
 
@@ -1082,27 +1082,22 @@ Underfull \hbox (badness 1292) in paragraph at lines 23--27
 
 
 ]
-Underfull \hbox (badness 2057) in paragraph at lines 32--35
+Underfull \hbox (badness 2057) in paragraph at lines 33--36
 []\TU/TimesNewRoman(0)/m/n/12 Keterbatasan berbagai solusi tersebut menunjukkan bahwa diperlukan sistem
  []
 
 
-Underfull \hbox (badness 2103) in paragraph at lines 41--42
-[]\TU/TimesNewRoman(0)/m/n/12 Elaborasi lebih lanjut urgensi penyelesaian masalah tersebut (mengapa
- []
-
-
-Underfull \hbox (badness 5302) in paragraph at lines 41--42
-\TU/TimesNewRoman(0)/m/n/12 penting untuk diselesaikan dan akibat yang dapat terjadi jika tidak
- []
-
-
-Underfull \hbox (badness 1742) in paragraph at lines 42--44
-\TU/TimesNewRoman(0)/m/n/12 pada subbab ini akan dipertanggungjawabkan di bab Evaluasi (apakah
+Underfull \hbox (badness 1158) in paragraph at lines 43--44
+\TU/TimesNewRoman(0)/m/n/12 (\TU/TimesNewRoman(0)/m/it/12 high availability\TU/TimesNewRoman(0)/m/n/12 ) sehingga dapat beroperasi secara andal selama acara
  []
 
 [2]
-Underfull \hbox (badness 1708) in paragraph at lines 48--49
+Underfull \hbox (badness 5036) in paragraph at lines 44--45
+\TU/TimesNewRoman(0)/m/n/12 khususnya dari aspek \TU/TimesNewRoman(0)/m/it/12 throughput\TU/TimesNewRoman(0)/m/n/12 , \TU/TimesNewRoman(0)/m/it/12 latency\TU/TimesNewRoman(0)/m/n/12 , \TU/TimesNewRoman(0)/m/it/12 error rate\TU/TimesNewRoman(0)/m/n/12 , dan \TU/TimesNewRoman(0)/m/it/12 resource
+ []
+
+
+Underfull \hbox (badness 1708) in paragraph at lines 50--51
 \TU/TimesNewRoman(0)/m/n/12 tugas akhir. Fokuskan pada hasil akhir yang ingin diperoleh setelah tugas
  []
 
@@ -1181,4 +1176,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  72i,14n,78p,1246b,6545s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ProposalTA.xdv (25 pages, 311416 bytes).
+Output written on ProposalTA.xdv (25 pages, 312696 bytes).
