@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2025.11.4)  1 DEC 2025 10:48
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2025.11.4)  1 DEC 2025 11:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1059,22 +1059,22 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 ] (./Bab I - Pendahuluan.tex
 Bab I.
 
-Underfull \hbox (badness 1742) in paragraph at lines 14--19
+Underfull \hbox (badness 1742) in paragraph at lines 15--20
 \TU/TimesNewRoman(0)/m/n/12 lokasi pelari secara real-time dan menyebabkan koordinasi antarpos menjadi
  []
 
 
-Underfull \hbox (badness 1810) in paragraph at lines 14--19
+Underfull \hbox (badness 1810) in paragraph at lines 15--20
 \TU/TimesNewRoman(0)/m/n/12 kurang efisien. Dampaknya terlihat pada ketidakakuratan pengaturan mobil
  []
 
 
-Underfull \hbox (badness 1248) in paragraph at lines 20--23
+Underfull \hbox (badness 1248) in paragraph at lines 21--24
 \TU/TimesNewRoman(0)/m/n/12 Sharing, Glympse, atau fitur Live Location pada aplikasi \TU/TimesNewRoman(0)/m/it/12 instant messaging\TU/TimesNewRoman(0)/m/n/12 .
  []
 
 
-Underfull \hbox (badness 1292) in paragraph at lines 24--28
+Underfull \hbox (badness 1292) in paragraph at lines 25--29
 \TU/TimesNewRoman(0)/m/n/12 telah tersedia, tingkat keterbukaan, biaya, dan kemampuan integrasi menjadi
  []
 
@@ -1082,39 +1082,64 @@ Underfull \hbox (badness 1292) in paragraph at lines 24--28
 
 
 ]
-Underfull \hbox (badness 2057) in paragraph at lines 33--36
+Underfull \hbox (badness 2057) in paragraph at lines 34--37
 []\TU/TimesNewRoman(0)/m/n/12 Keterbatasan berbagai solusi tersebut menunjukkan bahwa diperlukan sistem
  []
 
 
-Underfull \hbox (badness 1158) in paragraph at lines 43--44
+Underfull \hbox (badness 1158) in paragraph at lines 48--49
 \TU/TimesNewRoman(0)/m/n/12 (\TU/TimesNewRoman(0)/m/it/12 high availability\TU/TimesNewRoman(0)/m/n/12 ) sehingga dapat beroperasi secara andal selama acara
  []
 
 [2]
-Underfull \hbox (badness 5036) in paragraph at lines 44--45
+Underfull \hbox (badness 5036) in paragraph at lines 50--51
 \TU/TimesNewRoman(0)/m/n/12 khususnya dari aspek \TU/TimesNewRoman(0)/m/it/12 throughput\TU/TimesNewRoman(0)/m/n/12 , \TU/TimesNewRoman(0)/m/it/12 latency\TU/TimesNewRoman(0)/m/n/12 , \TU/TimesNewRoman(0)/m/it/12 error rate\TU/TimesNewRoman(0)/m/n/12 , dan \TU/TimesNewRoman(0)/m/it/12 resource
  []
 
 
-Underfull \hbox (badness 1708) in paragraph at lines 50--51
-\TU/TimesNewRoman(0)/m/n/12 tugas akhir. Fokuskan pada hasil akhir yang ingin diperoleh setelah tugas
+Underfull \hbox (badness 1418) in paragraph at lines 63--64
+\TU/TimesNewRoman(0)/m/n/12 waktu kedatangan pelari secara relevan dengan pola pergerakan pelari,
  []
 
-) (./Bab II - Studi-Literatur.tex [3]
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
+[]\TU/TimesNewRoman(0)/m/n/12 Menghasilkan arsitektur sistem \TU/TimesNewRoman(0)/m/it/12 backend \TU/TimesNewRoman(0)/m/n/12 yang mampu mendukung
+ []
+
+
+Underfull \hbox (badness 7397) in paragraph at lines 65--66
+\TU/TimesNewRoman(0)/m/n/12 skalabilitas (\TU/TimesNewRoman(0)/m/it/12 scalability\TU/TimesNewRoman(0)/m/n/12 ) dan ketersediaan layanan yang tinggi (\TU/TimesNewRoman(0)/m/it/12 high
+ []
+
+
+Underfull \hbox (badness 3514) in paragraph at lines 67--68
+[]\TU/TimesNewRoman(0)/m/n/12 Menghasilkan evaluasi kinerja sistem dalam menangani beban tinggi,
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 73--74
+\TU/TimesNewRoman(0)/m/n/12 real-time dengan tingkat keterlambatan pembaruan (update delay) yang
+ []
+
+
+Underfull \hbox (badness 1152) in paragraph at lines 77--78
+\TU/TimesNewRoman(0)/m/n/12 ITB Marathon dan tetap beroperasi tanpa gangguan (\TU/TimesNewRoman(0)/m/it/12 downtime\TU/TimesNewRoman(0)/m/n/12 ) selama
+ []
+
+[3]) (./Bab II - Studi-Literatur.tex [4]
 Bab II.
 File: image/gambar1.png Graphic file (type bmp)
 <image/gambar1.png>
-[4
+[5
 
-] [5] (./table/tabel1.tex) [6] [7] [8]
+] [6] (./table/tabel1.tex) [7] [8] [9]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 206.
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 215.
- [9]
+ [10]
 Overfull \hbox (19.22398pt too wide) in paragraph at lines 232--238
  [][] 
  []
@@ -1129,17 +1154,17 @@ Underfull \hbox (badness 1205) in paragraph at lines 242--252
 \TU/TimesNewRoman(0)/m/n/12 Dalam ragam formal, kata hubung “sedangkan” dan “sehingga” hanya dapat
  []
 
-[10]) (./Bab III - Analisis-Masalah.tex [11] [12]
+[11]) (./Bab III - Analisis-Masalah.tex [12] [13]
 Bab III.
-[13
+[14
 
-]) (./Bab IV - Desain-Konsep-Solusi.tex [14] [15]
+]) (./Bab IV - Desain-Konsep-Solusi.tex [15] [16]
 Bab IV.
-) (./Bab V - Rencana-Selanjutnya.tex [16
+) (./Bab V - Rencana-Selanjutnya.tex [17
 
 ]
 Bab V.
-) [17
+) [18
 
 ]
 Underfull \hbox (badness 1902) in paragraph at lines 415--415
@@ -1151,7 +1176,7 @@ Underfull \hbox (badness 1831) in paragraph at lines 415--415
 [][]\TU/TimesNewRoman(0)/m/n/12 Pressman, Roger S. 2019. \TU/TimesNewRoman(0)/m/it/12 Rekayasa Perangkat Lunak: Pendekatan Praktisi.
  []
 
-[18
+[19
 
 
 ] (./ProposalTA.aux)
@@ -1170,10 +1195,10 @@ Package logreq Info: Writing requests to 'ProposalTA.run.xml'.
 Here is how much of TeX's memory you used:
  31585 strings out of 476696
  626517 string characters out of 5806955
- 1948425 words of memory out of 6000000
+ 1948426 words of memory out of 6000000
  51414 multiletter control sequences out of 15000+600000
  517684 words of font info for 80 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,14n,78p,1246b,6545s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ProposalTA.xdv (25 pages, 312696 bytes).
+Output written on ProposalTA.xdv (26 pages, 327488 bytes).

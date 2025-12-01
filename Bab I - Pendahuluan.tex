@@ -6,6 +6,7 @@
 % --- Latar Belakang ---
 % NOTES: cek citation paragraf 1, tambahkan citation untuk paragraf lain
 \section{Latar Belakang}
+
 Ultra-Marathon merupakan salah satu cabang olahraga lari yang kini kian populer \cite{ronto2024}.
 Hal ini ditunjukkan dengan kegiatan ITB Ultra-Marathon yang jumlah pesertanya terus meningkat sejak pertama kali diselenggarakan pada tahun 2017 \cite{hafizh2025}.
 Seiring dengan meningkatnya partisipasi, kebutuhan akan sistem pelacakan pelari menjadi semakin penting.
@@ -36,18 +37,49 @@ Sistem ini diharapkan dapat menyediakan informasi posisi dan prediksi waktu keda
 
 % --- Rumusan Masalah ---
 \section{Rumusan Masalah}
+
 Berdasarkan latar belakang yang telah diuraikan, rumusan masalah dalam penelitian ini adalah sebagai berikut.
+
 \begin{enumerate}
     \item Bagaimana merancang dan mengimplementasikan sistem \textit{backend} untuk \textit{Real-Time Runner Tracking} yang mampu memantau posisi ribuan peserta ITB Marathon secara akurat dan real-time?
+ 
     \item Bagaimana merancang dan mengimplementasikan modul \textit{ETA Prediction} yang mampu menghasilkan estimasi waktu kedatangan pelari secara relevan dengan karakteristik pergerakan pelari dan kondisi rute?
+ 
     \item Bagaimana memastikan bahwa sistem \textit{backend} yang dibangun memiliki kemampuan skalabilitas (\textit{scalability}) dan ketersediaan layanan yang tinggi (\textit{high availability}) sehingga dapat beroperasi secara andal selama acara berlangsung?
+ 
     \item Bagaimana mengevaluasi kinerja sistem dalam menangani beban tinggi, khususnya dari aspek \textit{throughput}, \textit{latency}, \textit{error rate}, dan \textit{resource utilization}?
 \end{enumerate}
 
 
 % --- Tujuan ---
+% NOTES: not sure with the criteria, does it have to be measureable? if so, need to add specific numbers/targets
 \section{Tujuan}
-Tuliskan tujuan utama dan/atau tujuan detail yang akan dicapai dalam pelaksanaan tugas akhir. Fokuskan pada hasil akhir yang ingin diperoleh setelah tugas akhir diselesaikan, terkait dengan penyelesaian persoalan pada rumusan masalah. Penting untuk diperhatikan bahwa tujuan yang dideskripsikan pada subbab ini akan dipertanggungjawabkan di akhir pelaksanaan tugas akhir apakah tercapai atau tidak. Tuliskan kriteria keberhasilan tugas akhir ini.
+
+Berdasarkan rumusan masalah yang telah disebutkan sebelumnya, tujuan dari penelitian ini adalah sebagai berikut.
+
+\begin{enumerate}
+    \item Menghasilkan rancangan dan implementasi sistem \textit{backend} untuk \textit{Real-Time Runner Tracking} yang mampu memantau posisi ribuan peserta ITB Marathon secara akurat dan real-time.
+ 
+    \item Menghasilkan modul \textit{ETA Prediction} yang mampu memberikan estimasi waktu kedatangan pelari secara relevan dengan pola pergerakan pelari, kondisi rute, dan dinamika performa pelari.
+ 
+    \item Menghasilkan arsitektur sistem \textit{backend} yang mampu mendukung skalabilitas (\textit{scalability}) dan ketersediaan layanan yang tinggi (\textit{high availability}) sehingga sistem tetap dapat beroperasi secara andal selama acara berlangsung.
+ 
+    \item Menghasilkan evaluasi kinerja sistem dalam menangani beban tinggi, khususnya terkait \textit{throughput}, \textit{latency}, \textit{error rate}, dan \textit{resource utilization}.
+\end{enumerate}
+
+Kriteria keberhasilan dari penelitian ini ditetapkan sebagai berikut.
+
+\begin{enumerate}
+    \item Sistem \textit{Real-Time Runner Tracking} mampu memperbarui posisi pelari secara real-time dengan tingkat keterlambatan pembaruan (update delay) yang berada dalam batas operasional yang dapat diterima oleh panitia.
+ 
+    \item Modul \textit{ETA Prediction} mampu menghasilkan estimasi waktu kedatangan pelari dengan tingkat kesalahan prediksi yang rendah berdasarkan uji validasi pada data pergerakan pelari.
+ 
+    \item Arsitektur sistem mampu menangani skala pengguna sesuai jumlah peserta ITB Marathon dan tetap beroperasi tanpa gangguan (\textit{downtime}) selama simulasi atau pengujian beban.
+ 
+    \item Sistem memenuhi batas performa minimum pada pengujian beban, yang mencakup metrik \textit{throughput}, \textit{latency}, \textit{error rate}, dan \textit{resource utilization} sesuai target yang telah ditentukan.
+ 
+    \item Sistem dapat dioperasikan oleh panitia dan mampu menyajikan informasi tracking dan ETA secara konsisten selama proses simulasi operasional.
+\end{enumerate}
 
 % --- Batasan Masalah ---
 \section{Batasan Masalah}
