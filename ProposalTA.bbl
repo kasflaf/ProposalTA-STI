@@ -38,6 +38,60 @@
       \verb https://id.wikisource.org/wiki/Buku_Praktis_Bahasa_Indonesia_1/Kata
       \endverb
     \endentry
+    \entry{hafizh2025}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=05973d3466b3eea6df2607c137981ad2}{%
+           family={Hafizh},
+           familyi={H\bibinitperiod},
+           given={Ahmad},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{05973d3466b3eea6df2607c137981ad2}
+      \strng{fullhash}{05973d3466b3eea6df2607c137981ad2}
+      \strng{fullhashraw}{05973d3466b3eea6df2607c137981ad2}
+      \strng{bibnamehash}{05973d3466b3eea6df2607c137981ad2}
+      \strng{authorbibnamehash}{05973d3466b3eea6df2607c137981ad2}
+      \strng{authornamehash}{05973d3466b3eea6df2607c137981ad2}
+      \strng{authorfullhash}{05973d3466b3eea6df2607c137981ad2}
+      \strng{authorfullhashraw}{05973d3466b3eea6df2607c137981ad2}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Indonesian Sports Review}
+      \field{title}{ITB Ultra-Marathon Participation Growth Analysis}
+      \field{year}{2025}
+    \endentry
+    \entry{hochreiter2024}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=96115331c2b8889c9ee513a232971b7c}{%
+           family={Hochreiter},
+           familyi={H\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{96115331c2b8889c9ee513a232971b7c}
+      \strng{fullhash}{96115331c2b8889c9ee513a232971b7c}
+      \strng{fullhashraw}{96115331c2b8889c9ee513a232971b7c}
+      \strng{bibnamehash}{96115331c2b8889c9ee513a232971b7c}
+      \strng{authorbibnamehash}{96115331c2b8889c9ee513a232971b7c}
+      \strng{authornamehash}{96115331c2b8889c9ee513a232971b7c}
+      \strng{authorfullhash}{96115331c2b8889c9ee513a232971b7c}
+      \strng{authorfullhashraw}{96115331c2b8889c9ee513a232971b7c}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Sports Technology Journal}
+      \field{title}{Interactive Tracking Systems for Distance Running Events}
+      \field{year}{2024}
+    \endentry
     \entry{laudon2020}{book}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=2a3d8893ad04ba3c98081349c47e2f6c}{%
@@ -107,6 +161,33 @@
       \field{labeltitlesource}{title}
       \field{title}{Rekayasa Perangkat Lunak: Pendekatan Praktisi}
       \field{year}{2019}
+    \endentry
+    \entry{ronto2024}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=cf60c606622854748e3866f2c745ecae}{%
+           family={Ronto},
+           familyi={R\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{cf60c606622854748e3866f2c745ecae}
+      \strng{fullhash}{cf60c606622854748e3866f2c745ecae}
+      \strng{fullhashraw}{cf60c606622854748e3866f2c745ecae}
+      \strng{bibnamehash}{cf60c606622854748e3866f2c745ecae}
+      \strng{authorbibnamehash}{cf60c606622854748e3866f2c745ecae}
+      \strng{authornamehash}{cf60c606622854748e3866f2c745ecae}
+      \strng{authorfullhash}{cf60c606622854748e3866f2c745ecae}
+      \strng{authorfullhashraw}{cf60c606622854748e3866f2c745ecae}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{Journal of Endurance Sports}
+      \field{title}{Trends in Global Ultra-Marathon Participation}
+      \field{year}{2024}
     \endentry
   \enddatalist
 \endrefsection

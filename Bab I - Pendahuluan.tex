@@ -5,11 +5,33 @@
 \label{chap:pendahuluan}
 % --- Latar Belakang ---
 \section{Latar Belakang}
-Latar Belakang menjelaskan dasar pemikiran, motivasi, kebutuhan, alasan, atau urgensi pemilihan masalah tugas akhir. Subbab ini berisi penjelasan ringkas tentang kondisi atau situasi yang ada saat ini terkait dengan topik yang dibahas. Tujuan utamanya adalah untuk memberikan informasi secukupnya kepada pembaca agar memahami topik yang akan dibahas. Dalam subbab ini, jelaskan hal-hal berikut ini:
-\begin{enumerate}
-\item	Kondisi atau situasi topik yang dibahas beserta permasalahannya, misalnya tentang pengelolaan informasi di puskesmas daerah pedesaan dan masalah yang dihadapi.
-\item	Berbagai solusi yang telah diterapkan atau solusi yang tersedia dan memungkinkan untuk diterapkan untuk menyelesaikan masalah tersebut.
-\end{enumerate}
+Ultra-Marathon merupakan salah satu cabang olahraga lari yang kini kian populer \cite{ronto2024}.
+Hal ini ditunjukkan dengan kegiatan ITB Ultra-Marathon yang jumlah pesertanya terus meningkat sejak pertama kali diselenggarakan pada tahun 2017 \cite{hafizh2025}.
+Seiring dengan meningkatnya partisipasi, kebutuhan akan sistem pelacakan pelari menjadi semakin penting.
+Sistem tersebut berperan dalam memastikan keselamatan, performa, dan pengalaman peserta secara keseluruhan, serta memberikan interaktivitas bagi panitia dan pendukung acara \cite{hochreiter2024}.
+
+Dalam penyelenggaraan ITB Ultra-Marathon saat ini, pelacakan posisi peserta masih dilakukan secara manual.
+Kondisi ini menyulitkan panitia dalam memantau lokasi pelari secara real-time dan menyebabkan koordinasi antarpos menjadi kurang efisien.
+Dampaknya terlihat pada ketidakakuratan pengaturan mobil penjemput, yang kerap terlambat tiba di titik pengambilan peserta.
+Ketiadaan sistem pemantauan khusus juga membuat panitia dan peserta mengandalkan aplikasi umum seperti Google Maps untuk memprediksi estimasi waktu kedatangan (ETA), meskipun aplikasi tersebut tidak dirancang untuk konteks pelari.
+Permasalahan ini menegaskan perlunya mekanisme pelacakan yang terintegrasi, akurat, dan adaptif terhadap kebutuhan operasional marathon.
+
+Sejumlah solusi pelacakan posisi telah tersedia, seperti Google Maps Location Sharing, Glympse, atau fitur Live Location pada aplikasi \textit{instant messaging}.
+Namun, layanan tersebut hanya ditujukan untuk pelacakan individu dan tidak dirancang untuk menangani pemantauan ribuan peserta secara simultan.
+Selain itu, algoritma ETA pada layanan tersebut umumnya berorientasi pada pergerakan kendaraan sehingga tidak relevan untuk memodelkan perilaku pelari.
+
+Di sisi lain, platform profesional seperti MYLAPS LiveTrack, RaceResult, dan Sporthive memang menawarkan solusi pelacakan untuk acara lari berskala besar.
+Akan tetapi, sistem-sistem tersebut bersifat tertutup, memerlukan perangkat khusus, dan memiliki biaya operasional yang cukup tinggi, sehingga kurang sesuai dengan skala kegiatan ITB Marathon.
+Selain itu, fleksibilitas untuk menyesuaikan sistem dengan alur kerja panitia sangat terbatas.
+Oleh karena itu, meskipun solusi industri telah tersedia, tingkat keterbukaan, biaya, dan kemampuan integrasi menjadi hambatan utama dalam penerapannya.
+
+Metode prediksi ETA yang ada saat ini juga belum mampu memenuhi kebutuhan event marathon secara akurat.
+Layanan navigasi umum tidak mempertimbangkan pola pace pelari, kondisi rute, elevasi lintasan, serta dinamika performa dari waktu ke waktu.
+Selain itu, belum tersedia solusi terbuka yang mampu memproses data ribuan pelari dan menghasilkan prediksi secara real-time dengan jaminan skalabilitas dan ketersediaan layanan yang tinggi.
+
+Keterbatasan berbagai solusi tersebut menunjukkan bahwa diperlukan sistem pelacakan yang dirancang khusus untuk kebutuhan ITB Marathon.
+Oleh karena itu, penelitian ini mengusulkan perancangan dan implementasi \textit{backend} untuk \textit{Real-Time Runner Tracking} dan \textit{ETA Prediction} yang mampu beroperasi secara terukur (\textit{scalable}) serta memiliki tingkat ketersediaan layanan yang tinggi (\textit{high availability}).
+Sistem ini diharapkan dapat menyediakan informasi posisi dan prediksi waktu kedatangan pelari secara lebih akurat, sekaligus mendukung proses operasional kepanitiaan secara efisien dan andal.
 
 % --- Rumusan Masalah ---
 \section{Rumusan Masalah}
