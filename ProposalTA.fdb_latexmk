@@ -1,17 +1,17 @@
 # Fdb version 4
-["biber ProposalTA"] 1764556079.79198 "ProposalTA.bcf" "ProposalTA.bbl" "ProposalTA" 1764562015.03665 0
-  "ProposalTA.bcf" 1764562014.02564 204562 2566e1507547b46e2f21de5d1858868b "xelatex"
+["biber ProposalTA"] 1764556079.79198 "ProposalTA.bcf" "ProposalTA.bbl" "ProposalTA" 1764562650.40264 0
+  "ProposalTA.bcf" 1764562649.62512 204562 2566e1507547b46e2f21de5d1858868b "xelatex"
   "daftar-pustaka.bib" 1764555971.36844 5117 9a4f7efc8bc2efbc6a73cca87e5c0249 ""
   (generated)
   "ProposalTA.bbl"
   "ProposalTA.blg"
   (rewritten before read)
-["xdvipdfmx"] 1764562014.21368 "ProposalTA.xdv" "ProposalTA.pdf" "ProposalTA" 1764562015.04125 0
-  "ProposalTA.xdv" 1764562014.02922 327488 fdba18e3c5a054efdc08e6317cee41c0 "xelatex"
+["xdvipdfmx"] 1764562649.74912 "ProposalTA.xdv" "ProposalTA.pdf" "ProposalTA" 1764562650.40629 0
+  "ProposalTA.xdv" 1764562649.62818 343576 3ab0c0ce83d26b1b822a4e3adbf7c79a "xelatex"
   (generated)
   "ProposalTA.pdf"
   (rewritten before read)
-["xelatex"] 1764562011.4118 "/home/kasflaf/Documents/GitRepo/ProposalTA-STI/ProposalTA.tex" "ProposalTA.xdv" "ProposalTA" 1764562015.03677 0
+["xelatex"] 1764562647.01143 "/home/kasflaf/Documents/GitRepo/ProposalTA-STI/ProposalTA.tex" "ProposalTA.xdv" "ProposalTA" 1764562650.40275 0
   "/home/kasflaf/Documents/GitRepo/ProposalTA-STI/ProposalTA.tex" 1764558000.457 12537 053dbd3f0e210f59e2bc5a7b718552b6 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -155,20 +155,20 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1655411236 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1737590400 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1762246676 11130546 13d6d3cdcaf856dbc008e1a5b33ab897 ""
-  "Bab I - Pendahuluan.tex" 1764562011.14257 8308 705c871da017eb9878792ac9635cb563 ""
+  "Bab I - Pendahuluan.tex" 1764562646.71712 10171 0fb8b2a452db2673026b46a73c60ef77 ""
   "Bab II - Studi-Literatur.tex" 1764138349.2942 12868 edc53ef9d86ae6f9b9e53ac4d5cfc8a1 ""
   "Bab III - Analisis-Masalah.tex" 1764138349.2942 1261 ce5d849d4dc1dd51537e3eab5b548dce ""
   "Bab IV - Desain-Konsep-Solusi.tex" 1764138349.2942 616 216a6f94102880585f797751fe65b2d1 ""
   "Bab V - Rencana-Selanjutnya.tex" 1764138349.2942 668 f3f7228afd87dd70388cd98eb26a4810 ""
-  "ProposalTA.aux" 1764562013.94264 11060 55b9fd0ec25c92e8c2539cd4bad91df7 "xelatex"
+  "ProposalTA.aux" 1764562649.54312 11064 5f933f3f6d11ed3d8411be724713a1fa "xelatex"
   "ProposalTA.bbl" 1764556080.8433 7683 223881bcf49f1afa706acd6fb0de7da8 "biber ProposalTA"
-  "ProposalTA.lof" 1764562014.02922 1062 2190ae9ede281de492bf390048011201 "xelatex"
-  "ProposalTA.lol" 1764562014.02922 210 18bb3d8b2fb55deac3a72fbb1d1a4855 "xelatex"
-  "ProposalTA.lot" 1764562014.02922 1778 6ff5669321fc6bc9067088ec13a4dbb4 "xelatex"
-  "ProposalTA.out" 1764562014.01964 6732 a9c3a0d9adfe6c97340c7e98089ec31d "xelatex"
-  "ProposalTA.run.xml" 1764562014.02922 2420 213a90b5970b004a123579c946b55427 "xelatex"
+  "ProposalTA.lof" 1764562649.62818 1062 d08129cd424713d5006bd9fcc06ec5cb "xelatex"
+  "ProposalTA.lol" 1764562649.62818 210 88b92f8160b910133ae39b3094f0a0c3 "xelatex"
+  "ProposalTA.lot" 1764562649.62818 1779 f2c3193e3146437574e46e762cd92dae "xelatex"
+  "ProposalTA.out" 1764562649.62012 6732 a9c3a0d9adfe6c97340c7e98089ec31d "xelatex"
+  "ProposalTA.run.xml" 1764562649.62818 2420 213a90b5970b004a123579c946b55427 "xelatex"
   "ProposalTA.tex" 1764558000.457 12537 053dbd3f0e210f59e2bc5a7b718552b6 ""
-  "ProposalTA.toc" 1764562014.02922 4143 29a80ffbf52f9a2980566f0efec20c4c "xelatex"
+  "ProposalTA.toc" 1764562649.62818 4144 42d900dcf46fdc816c8a9fa93027a03f "xelatex"
   "image/gambar1.png" 1764138349.29836 307807 00ac1a189b214fb803a9c675fe502af8 ""
   "image/ganesha.jpg" 1764138349.29936 204312 0727b11a021a00ed8072dfbbb26b807b ""
   "table/tabel1.tex" 1764138349.29936 409 89d503bfede72c789d540319a0bf7724 ""

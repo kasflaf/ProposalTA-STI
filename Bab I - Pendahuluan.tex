@@ -82,8 +82,32 @@ Kriteria keberhasilan dari penelitian ini ditetapkan sebagai berikut.
 \end{enumerate}
 
 % --- Batasan Masalah ---
+% NOTES: sesuaikan beberapa poin dengan konisi asli
 \section{Batasan Masalah}
-Tuliskan batasan-batasan yang diambil dalam pelaksanaan tugas akhir. Batasan ini dapat dihindari (bersifat opsional, tidak perlu ada) jika topik atau judul tugas akhir dibuat cukup spesifik.
+
+Dalam penelitian ini, terdapat beberapa batasan yang digunakan untuk memfokuskan ruang lingkup pekerjaan dan memastikan hasil penelitian tetap relevan dengan tujuan yang telah ditetapkan. Batasan-batasan tersebut adalah sebagai berikut.
+
+\begin{enumerate}
+    \item Tugas akhir ini dikerjakan oleh dua orang mahasiswa, yaitu Dinda Thalia Fahira (18222055) dan Justin Lawrance (18222006), dengan pembagian fokus bahwa pengembangan \textit{backend} dilakukan oleh Justin Lawrance, sedangkan pengembangan \textit{frontend} dilakukan oleh Dinda Thalia Fahira.
+
+    \item Implementasi yang dibahas pada laporan ini hanya mencakup pengembangan sistem \textit{backend} untuk \textit{Real-Time Runner Tracking} dan \textit{ETA Prediction}.  
+    Pengembangan \textit{frontend} aplikasi tidak termasuk ruang lingkup pembahasan teknis pada laporan ini.
+
+    \item Sistem \textit{backend} yang dikembangkan dibatasi pada fungsionalitas inti yang diperlukan untuk mendukung proses pelacakan dan prediksi, termasuk:  
+    \begin{itemize}
+        \item penerimaan dan pemrosesan data lokasi pelari.
+        \item penyimpanan data posisi secara real-time.
+        \item penyediaan \textit{API} untuk konsumsi \textit{frontend}.
+        \item modul prediksi waktu kedatangan (ETA).
+    \end{itemize}
+
+    \item Evaluasi nonfungsional difokuskan pada metrik \textit{performance} yang meliputi \textit{throughput}, \textit{latency}, \textit{error rate}, dan \textit{resource utilization}.  
+    Evaluasi aspek lain seperti keamanan, biaya operasional, atau konsumsi energi tidak dibahas secara mendalam.
+
+    \item Pengujian dilakukan menggunakan data simulasi yang merepresentasikan pergerakan pelari dalam skala besar. Pengujian tidak dilakukan dalam kondisi event sesungguhnya.
+
+    \item Sistem tidak mencakup integrasi dengan perangkat pelacakan khusus (misalnya chip RFID atau sensor profesional) dan hanya memproses data lokasi berbasis koordinat yang dikirimkan dari aplikasi \textit{frontend}.
+\end{enumerate}
 
 % --- Metodologi Pengerjaan TA ---
 \section{Metodologi}

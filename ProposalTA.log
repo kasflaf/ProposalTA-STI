@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2025.11.4)  1 DEC 2025 11:06
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2025.11.4)  1 DEC 2025 11:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1126,20 +1126,45 @@ Underfull \hbox (badness 1152) in paragraph at lines 77--78
 \TU/TimesNewRoman(0)/m/n/12 ITB Marathon dan tetap beroperasi tanpa gangguan (\TU/TimesNewRoman(0)/m/it/12 downtime\TU/TimesNewRoman(0)/m/n/12 ) selama
  []
 
-[3]) (./Bab II - Studi-Literatur.tex [4]
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
+\TU/TimesNewRoman(0)/m/n/12 Dalam penelitian ini, terdapat beberapa batasan yang digunakan untuk
+ []
+
+
+Underfull \hbox (badness 1152) in paragraph at lines 88--89
+\TU/TimesNewRoman(0)/m/n/12 memfokuskan ruang lingkup pekerjaan dan memastikan hasil penelitian tetap
+ []
+
+[3]
+Underfull \hbox (badness 2318) in paragraph at lines 91--92
+\TU/TimesNewRoman(0)/m/n/12 fokus bahwa pengembangan \TU/TimesNewRoman(0)/m/it/12 backend \TU/TimesNewRoman(0)/m/n/12 dilakukan oleh Justin Lawrance,
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 93--95
+\TU/TimesNewRoman(0)/m/n/12 sistem \TU/TimesNewRoman(0)/m/it/12 backend \TU/TimesNewRoman(0)/m/n/12 untuk \TU/TimesNewRoman(0)/m/it/12 Real-Time Runner Tracking \TU/TimesNewRoman(0)/m/n/12 dan \TU/TimesNewRoman(0)/m/it/12 ETA Prediction\TU/TimesNewRoman(0)/m/n/12 .
+ []
+
+
+Underfull \hbox (badness 4291) in paragraph at lines 109--110
+[]\TU/TimesNewRoman(0)/m/n/12 Sistem tidak mencakup integrasi dengan perangkat pelacakan khusus
+ []
+
+[4]) (./Bab II - Studi-Literatur.tex [5]
 Bab II.
 File: image/gambar1.png Graphic file (type bmp)
 <image/gambar1.png>
-[5
+[6
 
-] [6] (./table/tabel1.tex) [7] [8] [9]
+] [7] (./table/tabel1.tex) [8] [9] [10]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 206.
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 215.
- [10]
+ [11]
 Overfull \hbox (19.22398pt too wide) in paragraph at lines 232--238
  [][] 
  []
@@ -1154,17 +1179,17 @@ Underfull \hbox (badness 1205) in paragraph at lines 242--252
 \TU/TimesNewRoman(0)/m/n/12 Dalam ragam formal, kata hubung “sedangkan” dan “sehingga” hanya dapat
  []
 
-[11]) (./Bab III - Analisis-Masalah.tex [12] [13]
+[12]) (./Bab III - Analisis-Masalah.tex [13] [14]
 Bab III.
-[14
+[15
 
-]) (./Bab IV - Desain-Konsep-Solusi.tex [15] [16]
+]) (./Bab IV - Desain-Konsep-Solusi.tex [16] [17]
 Bab IV.
-) (./Bab V - Rencana-Selanjutnya.tex [17
+) (./Bab V - Rencana-Selanjutnya.tex [18
 
 ]
 Bab V.
-) [18
+) [19
 
 ]
 Underfull \hbox (badness 1902) in paragraph at lines 415--415
@@ -1176,7 +1201,7 @@ Underfull \hbox (badness 1831) in paragraph at lines 415--415
 [][]\TU/TimesNewRoman(0)/m/n/12 Pressman, Roger S. 2019. \TU/TimesNewRoman(0)/m/it/12 Rekayasa Perangkat Lunak: Pendekatan Praktisi.
  []
 
-[19
+[20
 
 
 ] (./ProposalTA.aux)
@@ -1193,12 +1218,12 @@ Package logreq Info: Writing requests to 'ProposalTA.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 31585 strings out of 476696
- 626517 string characters out of 5806955
- 1948426 words of memory out of 6000000
- 51414 multiletter control sequences out of 15000+600000
+ 31586 strings out of 476696
+ 626540 string characters out of 5806955
+ 1948429 words of memory out of 6000000
+ 51415 multiletter control sequences out of 15000+600000
  517684 words of font info for 80 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,14n,78p,1246b,6545s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ProposalTA.xdv (26 pages, 327488 bytes).
+Output written on ProposalTA.xdv (27 pages, 343576 bytes).
