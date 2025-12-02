@@ -60,7 +60,7 @@ Berdasarkan observasi dan wawancara mengenai kondisi penyelenggaraan ITB Ultra-M
     \item Pelacakan posisi pelari masih manual dan tidak real-time.\\
     Panitia dan tim supporter harus meminta pelari melakukan \textit{share location} melalui aplikasi perpesanan untuk mengetahui posisi terkini, sehingga proses pemantauan menjadi tidak efisien.
 
-    \item Mobil penjemput sering tidak tepat waktu karena ETA tidak akurat. \\
+    \item Mobil penjemput dan \textit{drop bag} sulit untuk tepat waktu karena ETA tidak akurat. \\
     Keterlambatan terjadi karena tidak tersedianya data posisi dan kecepatan pelari yang diperbarui secara kontinu untuk memperkirakan estimasi waktu kedatangan dengan tepat.
 
     \item Metode ETA yang tersedia (misalnya Google Maps) tidak sesuai untuk konteks pelari. \\
@@ -70,14 +70,22 @@ Berdasarkan observasi dan wawancara mengenai kondisi penyelenggaraan ITB Ultra-M
     Peta rute biasanya dibuat menggunakan Google Maps secara manual dan tidak terintegrasi dengan sistem pelacakan, meskipun pelari menggunakan aplikasi tersebut untuk mendapatkan arah rute dan estimasi waktu tempuh.
 
     \item Tidak ada sistem yang mendukung kebutuhan operasional lomba secara menyeluruh. \\
-    Fitur-fitur penting seperti mode \textit{spectator} untuk supporter, manajemen tim, deteksi otomatis 16 segmen lomba, identifikasi pergantian pelari untuk kategori relay, serta pemantauan dan penegakan \textit{cut-off time} masih dilakukan secara manual dan rentan terhadap kesalahan.
+    Hal-hal seperti manajemen tim, deteksi pergantian pelari untuk kategori relay, pengelolaan pelanggaran dan penalti, pencatatan kehadiran, perkiraan jadwal penjemputan, \textit{drop bag}, serta pemants masih dilakukan secara manual dan rentan terhadap kesalahan.
 \end{enumerate}
 
 
 \subsection{Kebutuhan Fungsional}
+Pada tahap ini, disusun kebutuhan fungsional berdasarkan permasalahan yang telah diidentifikasi pada bagian sebelumnya.
+Selain itu, kebutuhan ini juga mencerminkan fungsi-fungsi dasar yang harus disediakan oleh sebuah sistem pelacakan marathon modern agar mampu memenuhi kebutuhan panitia, pelari, dan tim supporter secara efektif dan konsisten.
+
+\input{table/kebutuhan-fungsional.tex}
 
 \subsection{Kebutuhan Nonfungsional}
-\lipsum[7]
+Pada bagian sebelumnya telah dijabarkan kebutuhan fungsional yang menggambarkan perilaku dan layanan utama yang harus disediakan oleh sistem. Namun, pemenuhan fungsi-fungsi tersebut tidak akan berjalan efektif tanpa dukungan kualitas sistem yang memadai. Oleh karena itu, pada bagian ini disusun kebutuhan nonfungsional yang berfokus pada karakteristik teknis, performa, keandalan, keamanan, dan aspek operasional lain yang harus dipenuhi oleh sistem.
+
+Kebutuhan nonfungsional ini memastikan bahwa setiap fungsi yang telah dirumuskan tidak hanya berjalan dengan benar, tetapi juga konsisten, aman, responsif, serta mampu beroperasi dalam skala yang diperlukan oleh kegiatan lomba marathon yang dinamis dan intensif terhadap data. Dengan demikian, bagian ini mendefinisikan standar kualitas yang menjadi fondasi bagi desain arsitektur dan implementasi sistem pada tahap selanjutnya.
+
+\input{table/kebutuhan-nonfungsional.tex}
 
 \section{Analisis Pemilihan Solusi}
 \subsection{Alternatif Solusi}

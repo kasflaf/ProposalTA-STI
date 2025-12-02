@@ -1,0 +1,50 @@
+\begin{center}
+\begin{longtable}{|c|p{3.5cm}|p{8.5cm}|}
+\caption{Kebutuhan Nonfungsional Sistem}\label{tab:kebutuhan-nonfungsional}\\
+\hline
+\textbf{Kode} & \textbf{Kebutuhan} & \textbf{Deskripsi} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Kode} & \textbf{Kebutuhan} & \textbf{Deskripsi} \\
+\hline
+\endhead
+
+\endfoot
+
+\hline
+\endlastfoot
+
+NF-01 & Ketersediaan Sistem &
+Sistem backend harus memiliki tingkat \textit{availability} minimal 99.9\% selama periode lomba, sehingga layanan inti seperti pelacakan real-time, ETA, dan dashboard panitia tetap dapat diakses tanpa gangguan. \\ \hline
+
+NF-02 & Skalabilitas &
+Sistem harus mampu menangani peningkatan jumlah pengguna, klien pelacakan, dan request API secara dinamis dengan mendukung mekanisme autoscaling dan arsitektur terdistribusi di lingkungan cloud. \\ \hline
+
+NF-03 & Performa API &
+Endpoint API harus merespons dalam waktu kurang dari 300 ms untuk operasi utama seperti pengambilan posisi pelari, status, dan data ETA, demi menjamin pengalaman real-time. \\ \hline
+
+NF-04 & Konsistensi Data &
+Sistem harus memastikan konsistensi data pelari, checkpoint, dan status lomba meskipun terdapat update simultan dari banyak perangkat dan panitia. Mekanisme seperti \textit{event-driven workflow} atau \textit{transactional safety} perlu diterapkan. \\ \hline
+
+NF-05 & Keamanan &
+Sistem harus menerapkan autentikasi dan otorisasi berbasis token, enkripsi data dalam transit (HTTPS/TLS), pembatasan akses berdasarkan peran, serta perlindungan terhadap akses tidak sah dan penyalahgunaan API. \\ \hline
+
+NF-06 & Reliabilitas Telemetri &
+Sistem harus mampu menerima data lokasi secara kontinu meskipun kondisi jaringan buruk melalui dukungan buffering, retry mechanism, atau strategi \textit{eventual delivery}. Data yang hilang harus diminimalkan. \\ \hline
+
+NF-07 & Integritas ETA &
+Model perhitungan ETA harus menghasilkan output yang stabil dan dapat diandalkan, serta tetap akurat meskipun data telemetri tidak lengkap atau mengalami delay. \\ \hline
+
+NF-08 & Fault Tolerance &
+Sistem harus tetap beroperasi meskipun terjadi kegagalan pada salah satu komponen (server, pod, database replica, dsb.) dengan menerapkan \textit{redundancy} dan \textit{graceful degradation}. \\ \hline
+
+NF-09 & Monitoring dan Observability &
+Sistem menyediakan logging terstruktur, metrik performa, tracing request, dan dashboard monitoring untuk mendeteksi anomali secara cepat. \\ \hline
+
+NF-12 & Kapasitas Penyimpanan &
+Sistem harus dapat menyimpan data telemetri dalam jumlah besar (posisi, status, event log) selama periode lomba tanpa mengorbankan performa query. Mekanisme TTL, cold storage, atau kompresi perlu didukung. \\ \hline
+
+\end{longtable}
+\end{center}

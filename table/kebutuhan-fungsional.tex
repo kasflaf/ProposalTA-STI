@@ -1,17 +1,141 @@
-\begin{table}[h]
-\begin{tabular}{ | p{2cm} | p{2cm} | p{3cm} |}
-	\hline
-	Kode 	& Kebutuhan 		& Deskripsi \\
-	\hline
-	Buku 	& Exemplar	& 25000 \\
-	Komputer	& Unit		& 2500000 \\
-	Pensil	& Buah		& 118900 \\
-    Pensil	& Buah		& 118900 \\
-    Pensil	& Buah		& 118900 \\
-    Pensil	& Buah		& 118900 \\
-    Pensil	& Buah		& 118900 \\
-	\hline
-\end{tabular}
-\caption{Tabel kebutuhan fungsional}
-\label{tbl:kebutuhan-fungsional}
-\end{table}
+% functional requirement sistem
+% \begin{center}
+% \begin{longtable}{|c|p{3.5cm}|p{8.5cm}|}
+% \caption{Kebutuhan Fungsional Sistem}\label{tab:kebutuhan-fungsional}\\
+% \hline
+% \textbf{Kode} & \textbf{Kebutuhan} & \textbf{Deskripsi} \\
+% \hline
+% \endfirsthead
+
+% \hline
+% \textbf{Kode} & \textbf{Kebutuhan} & \textbf{Deskripsi} \\
+% \hline
+% \endhead
+
+% \endfoot
+
+% \hline
+% \endlastfoot
+
+% FR-01 & Pendaftaran Peserta &
+% Sistem menyediakan proses pendaftaran peserta, termasuk pengisian data identitas dan informasi dasar yang diperlukan untuk mengikuti lomba. \\
+% \hline
+
+% FR-02 & Manajemen Tim & Sistem memungkinkan peserta membuat dan bergabung ke tim, serta mengelola struktur tim yang beranggotakan pelari dan supporter. \\
+% \hline
+
+% FR-03 & Manajemen Lomba & Sistem mendukung pembuatan dan pengaturan lomba oleh panitia, termasuk jadwal, kategori, aturan, dan konfigurasi event. \\
+% \hline
+
+% FR-04 & Pengelolaan Trek & Sistem memungkinkan panitia membuat rute lomba, menetapkan lokasi checkpoint/water station, jam buka, dan cutoff time untuk setiap titik. \\
+% \hline
+
+% FR-05 & Pelacakan Peserta Real-time & Sistem menerima dan memproses data lokasi peserta secara kontinu untuk menyediakan posisi terbaru kepada pihak yang berhak. \\
+% \hline
+
+% FR-06 & Prediksi ETA & Sistem menghitung ETA peserta berdasarkan pace, progres rute, elevasi, dan dinamika performa pelari. \\
+% \hline
+
+% FR-07 & Deteksi Pergantian Pelari & Sistem mendeteksi pergantian pelari pada checkpoint dan mencatat perubahan pelari aktif dalam satu tim. \\
+% \hline
+
+% FR-08 & Pencatatan Status Peserta & Sistem mencatat status peserta (DNS, DNF, finished, disqualified, running) serta waktu start, checkpoint, penalti, dan waktu selesai. \\
+% \hline
+
+% FR-09 & Penjadwalan Penjemputan & Sistem menampilkan informasi penjemputan, layanan medis, dan drop bag dari panitia kepada peserta secara terorganisir. \\
+% \hline
+
+% FR-10 & Permintaan Bantuan & Sistem menyediakan fitur bagi peserta untuk mengirim permintaan pertolongan, berhenti, atau meminta evakuasi kepada panitia. \\
+% \hline
+
+% FR-11 & Manajemen Pengguna & Sistem menyediakan autentikasi dan otorisasi, termasuk pengaturan role (peserta, panitia, supporter) serta pembatasan akses sehingga pengguna hanya dapat melihat data sesuai perannya. \\
+% \hline
+
+% FR-12 & Notifikasi & Sistem memberikan notifikasi terkait kondisi lomba seperti nearing cutoff time, status darurat, atau perubahan status peserta. \\
+% \hline
+
+% FR-13 & Riwayat dan Audit Log & Sistem menyimpan riwayat posisi, kecepatan, status lomba, perubahan oleh panitia, serta log penting lainnya. \\
+% \hline
+
+% FR-14 & Dashboard Operasional & Sistem menyediakan dashboard data agregat untuk panitia, termasuk pelari mendekati cutoff dan statistik operasional. \\
+% \hline
+
+% FR-15 & Verifikasi Registrasi & Sistem mendukung verifikasi pembayaran atau kelengkapan administrasi sebelum peserta resmi terdaftar. \\
+% \hline
+
+% FR-16 & Sinkronisasi Offline & Sistem mendukung buffering data ketika koneksi buruk dan sinkronisasi ulang otomatis ketika koneksi pulih. \\
+% \hline
+
+% \end{longtable}
+% \end{center}
+
+% functional requirement backend
+\begin{center}
+\begin{longtable}{|c|p{3.5cm}|p{8.5cm}|}
+\caption{Kebutuhan Fungsional Sistem}\label{tab:kebutuhan-fungsional}\\
+\hline
+\textbf{Kode} & \textbf{Kebutuhan} & \textbf{Deskripsi} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Kode} & \textbf{Kebutuhan} & \textbf{Deskripsi} \\
+\hline
+\endhead
+
+\endfoot
+
+\hline
+\endlastfoot
+
+FR-01 & API Pendaftaran Peserta & 
+Backend menyediakan API untuk pendaftaran peserta, termasuk validasi data identitas dan penyimpanan informasi dasar peserta ke dalam database. \\
+\hline
+FR-02 & API Manajemen Tim & 
+Backend menyediakan endpoint untuk membuat, mengelola, dan menghubungkan peserta ke dalam tim, termasuk sinkronisasi struktur tim dengan modul lomba dan modul pelacakan. \\
+\hline
+FR-03 & API Manajemen Lomba & 
+Backend menyediakan API bagi panitia untuk membuat, memperbarui, dan mengambil konfigurasi event seperti jadwal, kategori lomba, serta aturan dan parameter lomba. \\
+\hline
+FR-04 & API Pengelolaan Trek & 
+Backend menyediakan API untuk pembuatan rute lomba (polyline), pengaturan checkpoint dan water station, serta pendefinisian jam buka, jam tutup, dan cutoff time untuk setiap titik. \\
+\hline
+FR-05 & Akuisisi dan Distribusi Data Tracking & 
+Backend menerima data lokasi peserta melalui endpoint ingestion dan menyediakan API streaming atau REST untuk menyalurkan data posisi terbaru kepada pihak yang berwenang. \\
+\hline
+FR-06 & Layanan Backend Perhitungan ETA & 
+Backend menjalankan komponen perhitungan ETA berdasarkan pace, progres rute, elevasi, dan dinamika performa pelari, serta menyediakan API untuk pengambilan nilai ETA. \\
+\hline
+FR-07 & API Deteksi Pergantian Pelari & 
+Backend menyediakan mekanisme serta API untuk mencatat dan mendeteksi pergantian pelari dalam satu tim berdasarkan checkpoint atau input panitia. \\
+\hline
+FR-08 & API Manajemen Status Peserta & 
+Backend menyediakan endpoint untuk memperbarui status peserta (DNS, DNF, finished, disqualified, running), mencatat waktu start, checkpoint, penalti, dan waktu selesai. \\
+\hline
+FR-09 & API Informasi Logistik & 
+Backend menyediakan API untuk menampilkan informasi penjemputan, layanan medis, serta drop bag dari panitia kepada peserta. \\
+\hline
+FR-10 & API Permintaan Bantuan & 
+Backend menyediakan endpoint bagi peserta untuk mengirim sinyal bantuan, permintaan berhenti, atau permintaan evakuasi, serta mendistribusikan event tersebut ke modul panitia. \\
+\hline
+FR-11 & Manajemen Pengguna dan RBAC & 
+Backend menyediakan autentikasi, otorisasi, manajemen token, dan pembatasan akses sehingga pengguna hanya dapat melihat data sesuai perannya (panitia, peserta, supporter). \\
+\hline
+FR-12 & Sistem Notifikasi Event-driven & 
+Backend menyediakan mekanisme pengiriman notifikasi berdasarkan event penting seperti nearing cutoff time, status darurat, dan perubahan status peserta. \\
+\hline
+FR-13 & Penyimpanan Riwayat dan Audit Log & 
+Backend menyimpan riwayat posisi, kecepatan, perubahan status, aktivitas panitia, serta log penting lainnya yang dapat diakses kembali melalui API. \\
+\hline
+FR-14 & API Dashboard Operasional & 
+Backend menyediakan API data agregat untuk dashboard panitia termasuk deteksi pelari mendekati cutoff, statistik checkpoint, dan data operasional lainnya. \\
+\hline
+FR-15 & API Verifikasi Registrasi & 
+Backend menyediakan endpoint untuk validasi pembayaran atau kelengkapan administrasi peserta sebelum dinyatakan resmi terdaftar. \\
+\hline
+FR-16 & Sinkronisasi dan Buffering Offline & 
+Backend menyediakan mekanisme penerimaan data tertunda akibat koneksi buruk serta melakukan sinkronisasi ulang ketika koneksi pulih. \\
+\hline
+
+\end{longtable}
+\end{center}
