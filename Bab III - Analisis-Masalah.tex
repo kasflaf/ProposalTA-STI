@@ -50,11 +50,32 @@ Dengan demikian, terdapat kebutuhan akan sistem \textit{backend} yang mampu meng
 
 
 \section{Analisis Kebutuhan}
-\lipsum[4]
+Tahap analisis kebutuhan dilakukan untuk memperoleh gambaran yang komprehensif mengenai tujuan, batasan, serta karakteristik sistem yang akan dibangun. Pada tahap ini, dilakukan identifikasi terhadap permasalahan dan kebutuhan pengguna yang muncul dalam operasional ITB Ultra-Marathon. Selain itu, dirumuskan kebutuhan fungsional yang mendefinisikan kemampuan utama yang harus disediakan sistem, serta kebutuhan nonfungsional yang memastikan sistem mampu beroperasi secara andal, aman, dan skalabel sesuai standar yang dibutuhkan. Hasil dari analisis kebutuhan ini menjadi dasar dalam proses perancangan arsitektur dan implementasi sistem pada tahap berikutnya.
+
 \subsection{Identifikasi Masalah Pengguna}
-\lipsum[5]
+
+Berdasarkan observasi dan wawancara mengenai kondisi penyelenggaraan ITB Ultra-Marathon saat ini, terdapat sejumlah permasalahan utama yang dialami oleh panitia, peserta, maupun pihak pendukung acara. Permasalahan tersebut dapat diidentifikasi sebagai berikut.
+
+\begin{enumerate}
+    \item Pelacakan posisi pelari masih manual dan tidak real-time.\\
+    Panitia dan tim supporter harus meminta pelari melakukan \textit{share location} melalui aplikasi perpesanan untuk mengetahui posisi terkini, sehingga proses pemantauan menjadi tidak efisien.
+
+    \item Mobil penjemput sering tidak tepat waktu karena ETA tidak akurat. \\
+    Keterlambatan terjadi karena tidak tersedianya data posisi dan kecepatan pelari yang diperbarui secara kontinu untuk memperkirakan estimasi waktu kedatangan dengan tepat.
+
+    \item Metode ETA yang tersedia (misalnya Google Maps) tidak sesuai untuk konteks pelari. \\
+    Pola \textit{pace}, kelelahan, elevasi lintasan, serta karakteristik rute tidak diperhitungkan, sehingga estimasi waktu kedatangan sering meleset dan tidak dapat diandalkan.
+
+    \item Peta digital lomba masih dibuat secara manual. \\
+    Peta rute biasanya dibuat menggunakan Google Maps secara manual dan tidak terintegrasi dengan sistem pelacakan, meskipun pelari menggunakan aplikasi tersebut untuk mendapatkan arah rute dan estimasi waktu tempuh.
+
+    \item Tidak ada sistem yang mendukung kebutuhan operasional lomba secara menyeluruh. \\
+    Fitur-fitur penting seperti mode \textit{spectator} untuk supporter, manajemen tim, deteksi otomatis 16 segmen lomba, identifikasi pergantian pelari untuk kategori relay, serta pemantauan dan penegakan \textit{cut-off time} masih dilakukan secara manual dan rentan terhadap kesalahan.
+\end{enumerate}
+
+
 \subsection{Kebutuhan Fungsional}
-\lipsum[6]
+
 \subsection{Kebutuhan Nonfungsional}
 \lipsum[7]
 
