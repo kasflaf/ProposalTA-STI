@@ -7,7 +7,48 @@
 \chapter{ANALISIS MASALAH}
 \label{chap:analisis-masalah}
 \section{Analisis Kondisi Saat Ini}
-Menurut \textcite{laudon2020}, gambarkan terlebih dahulu model konseptual sistem yang ada saat ini. Model konseptual ini berisi berbagai komponen atau subsitem dan interaksi antarsubsistem tersebut. Setelah itu, berikan penjelasan tentang masalah yang ada pada sistem tersebut. Paragraf berikut berisi contoh penjabaran masalah sistem informasi fasilitas kesehatan untuk pasien \autocite{pressman2019}. 
+
+Seiring dengan meningkatnya kebutuhan akan sistem pelacakan pelari yang akurat dan dapat diakses secara \textit{real-time} dalam penyelenggaraan ITB Ultra-Marathon, penting untuk memahami terlebih dahulu kondisi teknologi dan pendekatan yang saat ini digunakan di industri maupun penelitian. Analisis ini diperlukan untuk mengidentifikasi bagaimana sistem pencatatan waktu konvensional bekerja, sejauh mana teknologi pelacakan kontinu telah berkembang, serta apa saja keterbatasan pada metode prediksi ETA yang tersedia. Pemahaman menyeluruh terhadap kondisi eksisting menjadi dasar dalam merumuskan rancangan \textit{backend} yang mampu menangani skala besar, mendukung prediksi yang lebih kontekstual, dan memenuhi kebutuhan operasional maraton secara spesifik.
+
+\subsection{Model Sistem Berbasis RFID}
+
+Standar industri dalam manajemen lomba lari massal saat ini adalah sistem \textit{timing} berbasis \textit{Radio Frequency Identification} (RFID), khususnya RFID pasif UHF. Model konseptual sistem ini mengandalkan interaksi antara \textit{tag} yang dibawa pelari dengan infrastruktur pembaca yang dipasang pada titik-titik tertentu \cite{RaceID2022}.
+
+Komponen utama dalam sistem ini meliputi:
+\begin{enumerate}
+    \item Transponder Pasif (Tag): \textit{Chip} tanpa baterai yang ditempelkan pada nomor dada pelari dan hanya aktif ketika menerima energi dari pembaca.
+    \item Infrastruktur \textit{Reader/Mats}: Antena atau karpet pembaca yang ditempatkan pada titik diskrit seperti garis \textit{start}, \textit{split} setiap beberapa kilometer, dan garis \textit{finish}.
+    \item Dekoder dan Perangkat Lunak: Perangkat yang mengonversi sinyal menjadi ID pelari dan stempel waktu untuk diproses lebih lanjut.
+\end{enumerate}
+
+Sistem RFID memiliki keterbatasan mendasar berupa sifat data yang diskrit. Posisi pelari hanya diketahui ketika melewati titik pembaca, sehingga terdapat zona buta antar \textit{checkpoint} \cite{hochreiter2024}. Akibatnya, estimasi posisi maupun kecepatan bergantung pada interpolasi sederhana. Selain itu, pemasangan infrastruktur RFID memerlukan biaya dan tenaga yang signifikan sehingga jumlah titik baca tidak dapat diperbanyak secara fleksibel, terutama pada rute maraton yang panjang.
+
+\subsection{Model Sistem Berbasis LoRaWan dan GPS}
+
+Sebagai perbaikan atas rendahnya resolusi spasial RFID, riset terbaru mengeksplorasi teknologi \textit{Low-Power Wide-Area Network} (LPWAN) seperti LoRaWAN untuk pelacakan kontinu. Riset mengusulkan model di mana pelari membawa pelacak GPS berbasis LoRa yang mengirimkan data posisi secara periodik, tidak terbatas pada titik diskrit\cite{hochreiter2024}.
+
+Model konseptual dalam studi tersebut mencakup:
+\begin{enumerate}
+    \item \textit{Tracker Node:} Perangkat LoRa berbasis GPS yang mengirimkan pembaruan posisi secara berkala (misalnya setiap 30 detik).
+    \item \textit{Mobile Gateway:} \textit{Gateway} bergerak yang dipasang pada kendaraan atau sepeda untuk meningkatkan cakupan sinyal di lingkungan lomba yang dinamis.
+    \item \textit{LoRaWAN Network Server (LNS):} Server yang menerima, mendekode, dan menyimpan paket data untuk visualisasi dan analisis lebih lanjut.
+\end{enumerate}
+
+Eksperimen pada Vienna City Marathon menunjukkan bahwa pendekatan ini mampu menyediakan data posisi dengan resolusi jauh lebih tinggi dibandingkan RFID, yaitu median interval sekitar 31 detik. Namun, pendekatan ini menuntut infrastruktur \textit{backend} yang sanggup menangani aliran data telemetri yang terus-menerus dan berjumlah besar.
+
+\subsection{Kesenjangan pada Metode Prediksi ETA}
+
+Walaupun pelacakan kontinu semakin memungkinkan, metode prediksi ETA yang digunakan saat ini belum mampu memenuhi kebutuhan konteks lomba lari jarak jauh. Terdapat beberapa kesenjangan utama:
+
+\begin{enumerate}
+    \item Model yang Kurang Relevan: Banyak metode ETA yang tersedia dikembangkan untuk kendaraan atau logistik sehingga mengasumsikan kecepatan relatif stabil, bukan perubahan performa fisiologis pelari.
+    \item Kurangnya Pertimbangan Konteks Lari: Metode konvensional sering kali tidak memperhitungkan karakteristik seperti elevasi rute, strategi \textit{pacing}, maupun dampak kelelahan.
+    \item Kendala Skalabilitas dan Ketersediaan: Sistem ETA eksisting umumnya tidak dirancang untuk menghitung prediksi bagi ribuan peserta secara bersamaan setiap kali data baru diterima. Dalam \textit{event} berskala besar, diperlukan arsitektur \textit{backend} yang mampu menjamin \textit{high availability} dan pemrosesan \textit{real-time}.
+\end{enumerate}
+
+Dengan demikian, terdapat kebutuhan akan sistem \textit{backend} yang mampu mengolah data pelacakan kontinu sekaligus menyediakan prediksi ETA yang cerdas, skalabel, dan andal.
+
+
 \section{Analisis Kebutuhan}
 \lipsum[4]
 \subsection{Identifikasi Masalah Pengguna}
