@@ -98,7 +98,7 @@ FR-03 & API Manajemen Lomba &
 Backend menyediakan API bagi panitia untuk membuat, memperbarui, dan mengambil konfigurasi event seperti jadwal, kategori lomba, serta aturan dan parameter lomba. \\
 \hline
 FR-04 & API Pengelolaan Trek & 
-Backend menyediakan API untuk pembuatan rute lomba (polyline), pengaturan checkpoint dan water station, serta pendefinisian jam buka, jam tutup, dan cutoff time untuk setiap titik. \\
+Backend menyediakan API untuk menerima data rute lomba (GPX/TCX), pengaturan checkpoint dan water station, serta pendefinisian jam buka, jam tutup, dan cutoff time untuk setiap titik. \\
 \hline
 FR-05 & Akuisisi dan Distribusi Data Tracking & 
 Backend menerima data lokasi peserta melalui endpoint ingestion dan menyediakan API streaming atau REST untuk menyalurkan data posisi terbaru kepada pihak yang berwenang. \\
@@ -112,28 +112,16 @@ Backend menyediakan mekanisme serta API untuk mencatat dan mendeteksi pergantian
 FR-08 & API Manajemen Status Peserta & 
 Backend menyediakan endpoint untuk memperbarui status peserta (DNS, DNF, finished, disqualified, running), mencatat waktu start, checkpoint, penalti, dan waktu selesai. \\
 \hline
-FR-09 & API Informasi Logistik & 
-Backend menyediakan API untuk menampilkan informasi penjemputan, layanan medis, serta drop bag dari panitia kepada peserta. \\
-\hline
-FR-10 & API Permintaan Bantuan & 
+FR-09 & API Permintaan Bantuan & 
 Backend menyediakan endpoint bagi peserta untuk mengirim sinyal bantuan, permintaan berhenti, atau permintaan evakuasi, serta mendistribusikan event tersebut ke modul panitia. \\
 \hline
-FR-11 & Manajemen Pengguna dan RBAC & 
+FR-10 & Manajemen Pengguna dan RBAC & 
 Backend menyediakan autentikasi, otorisasi, manajemen token, dan pembatasan akses sehingga pengguna hanya dapat melihat data sesuai perannya (panitia, peserta, supporter). \\
 \hline
-FR-12 & Sistem Notifikasi Event-driven & 
-Backend menyediakan mekanisme pengiriman notifikasi berdasarkan event penting seperti nearing cutoff time, status darurat, dan perubahan status peserta. \\
-\hline
-FR-13 & Penyimpanan Riwayat dan Audit Log & 
+FR-11 & Penyimpanan Riwayat dan Audit Log & 
 Backend menyimpan riwayat posisi, kecepatan, perubahan status, aktivitas panitia, serta log penting lainnya yang dapat diakses kembali melalui API. \\
 \hline
-FR-14 & API Dashboard Operasional & 
-Backend menyediakan API data agregat untuk dashboard panitia termasuk deteksi pelari mendekati cutoff, statistik checkpoint, dan data operasional lainnya. \\
-\hline
-FR-15 & API Verifikasi Registrasi & 
-Backend menyediakan endpoint untuk validasi pembayaran atau kelengkapan administrasi peserta sebelum dinyatakan resmi terdaftar. \\
-\hline
-FR-16 & Sinkronisasi dan Buffering Offline & 
+FR-12 & Sinkronisasi dan Buffering Offline & 
 Backend menyediakan mekanisme penerimaan data tertunda akibat koneksi buruk serta melakukan sinkronisasi ulang ketika koneksi pulih. \\
 \hline
 

@@ -70,7 +70,7 @@ Berdasarkan observasi dan wawancara mengenai kondisi penyelenggaraan ITB Ultra-M
     Peta rute biasanya dibuat menggunakan Google Maps secara manual dan tidak terintegrasi dengan sistem pelacakan, meskipun pelari menggunakan aplikasi tersebut untuk mendapatkan arah rute dan estimasi waktu tempuh.
 
     \item Tidak ada sistem yang mendukung kebutuhan operasional lomba secara menyeluruh. \\
-    Hal-hal seperti manajemen tim, deteksi pergantian pelari untuk kategori relay, pengelolaan pelanggaran dan penalti, pencatatan kehadiran, perkiraan jadwal penjemputan, \textit{drop bag}, serta pemants masih dilakukan secara manual dan rentan terhadap kesalahan.
+    Hal-hal seperti manajemen tim, deteksi pergantian pelari untuk kategori relay, pengelolaan pelanggaran dan penalti, pencatatan kehadiran, perkiraan jadwal penjemputan, \textit{drop bag} masih dilakukan secara manual dan rentan terhadap kesalahan.
 \end{enumerate}
 
 
@@ -88,7 +88,603 @@ Kebutuhan nonfungsional ini memastikan bahwa setiap fungsi yang telah dirumuskan
 \input{table/kebutuhan-nonfungsional.tex}
 
 \section{Analisis Pemilihan Solusi}
+Pada tahap sebelumnya telah dijabarkan kebutuhan fungsional dan nonfungsional yang harus dipenuhi oleh sistem pelacakan real-time dan prediksi ETA. Tahap berikutnya adalah menentukan pendekatan teknis yang paling sesuai untuk memenuhi kebutuhan tersebut. Bab ini menyajikan proses pemilihan solusi secara sistematis, dimulai dari identifikasi alternatif yang memungkinkan, analisis komparatif berdasarkan kriteria tertentu, hingga penetapan solusi akhir yang akan digunakan dalam perancangan sistem.
+
 \subsection{Alternatif Solusi}
-\lipsum[8]
+Bagian ini menguraikan berbagai alternatif solusi yang relevan untuk setiap komponen utama sistem, seperti arsitektur backend, metode akuisisi telemetri, model ETA, penyimpanan data, dan platform deployment. Identifikasi alternatif dilakukan untuk memastikan bahwa seluruh pendekatan yang layak dipertimbangkan secara objektif sebelum dilakukan analisis pemilihan pada tahap berikutnya.
+
+\subsubsection*{Arsitektur Backend}
+
+Beberapa alternatif arsitektur dipertimbangkan untuk mendukung kebutuhan sistem pelacakan real-time dan perhitungan ETA pada ITB Ultra-Marathon. Setiap pendekatan memiliki karakteristik berbeda terkait skalabilitas, kompleksitas, serta kemudahan pengembangan.
+
+\begin{itemize}
+    \item Layered Architecture\\
+    Pendekatan yang memisahkan berdasarkan lapisan (presentation, service, repository), dengan masing-masing lapisan dapat dideploy secara terpisah (misal front-end, back-end, dan database). Struktur ini mudah dipahami dan cocok untuk tim kecil, serta memungkinkan skalabilitas lebih baik dibanding monolith tunggal, meskipun modul ingest data telemetri mungkin masih menjadi bottleneck jika trafik sangat tinggi.
+    
+    \item Modular Monolithic\\
+    Seluruh fungsi dideploy dalam satu unit, tetapi dipisahkan secara modular berdasarkan domain. 
+    Memberikan latensi rendah dan kompleksitas operasional minimal, sekaligus tetap terstruktur.
+
+    \item Microservices\\
+    Setiap domain (tracking, event, ETA, tim, notifikasi) berjalan sebagai layanan terpisah. 
+    Mendukung penskalaan selektif, namun meningkatkan kebutuhan orkestrasi dan observabilitas.
+
+    \item Event-Driven Architecture\\
+    Komunikasi melalui \textit{event bus}. Ideal untuk pemrosesan telemetri, deteksi checkpoint, 
+    dan pembaruan ETA secara streaming.
+\end{itemize}
+
+\subsubsection*{Protokol Komunikasi Telemetri}
+
+Beberapa opsi protokol dipertimbangkan untuk mengirimkan data lokasi pelari ke backend secara real-time. 
+Masing-masing memiliki karakteristik terkait latensi, efisiensi jaringan, dan kompleksitas implementasi.
+
+\begin{itemize}
+    \item HTTPS REST Interval-based\\
+    Pelari mengirimkan data lokasi setiap X detik melalui permintaan HTTP \texttt{POST}. 
+    Pendekatan ini sederhana, mudah diimplementasikan, dan memiliki kompatibilitas tinggi dengan berbagai platform.
+
+    \item WebSocket\\
+    Mengirimkan telemetri secara kontinu tanpa overhead \textit{HTTP handshake} berulang. 
+    Cocok untuk kebutuhan pelacakan \textit{real-time} dengan interval 1–2 detik dan volume koneksi besar.
+
+    \item MQTT\\
+    Protokol IoT yang ringan dan dirancang untuk koneksi jaringan yang tidak stabil. 
+    Ideal untuk area rural dengan kualitas internet yang sering fluktuatif.
+\end{itemize}
+
+\subsubsection*{Penyimpanan Data Telemetri (Time-Series)}
+
+Beberapa opsi basis data deret-waktu dipertimbangkan untuk menyimpan lokasi pelari, kecepatan, serta data telemetri lainnya. Setiap solusi memiliki kekuatan berbeda dalam hal performa query, skalabilitas, dan kemudahan integrasi.
+
+\begin{itemize}
+    \item TimescaleDB (PostgreSQL-based TSDB)\\
+    Memudahkan eksekusi query per pelari, jarak, maupun checkpoint. 
+    Cocok digunakan untuk beban menengah dengan kebutuhan analisis yang fleksibel.
+
+    \item InfluxDB\\
+    Basis data yang dioptimalkan khusus untuk data \textit{time-series}. 
+    Memberikan performa query sangat cepat untuk kebutuhan analisis historis.
+\end{itemize}
+
+\subsubsection*{Platform Deployment}
+
+Berbagai opsi platform deployment dipertimbangkan untuk menyeimbangkan fleksibilitas, skalabilitas, dan kompleksitas operasional sistem.
+
+\begin{itemize}
+    \item Cloud VM (IaaS)\\
+    Menggunakan layanan seperti GCP Compute Engine atau AWS EC2. 
+    Memberikan kontrol penuh terhadap lingkungan dan konfigurasi, serta menawarkan fleksibilitas tertinggi.
+
+    \item Container Orchestration (Kubernetes)\\
+    Cocok untuk arsitektur dengan banyak \textit{service}. 
+    Mendukung \textit{auto-scaling} pada modul ingest telemetri dan memudahkan pengelolaan deployment berskala besar.
+
+    \item Serverless\\
+    Menggunakan layanan seperti Cloud Run atau AWS Lambda. 
+    Ideal untuk modul yang berjalan tidak kontinu, seperti layanan ETA API, notifikasi, atau API pendaftaran.
+\end{itemize}
+
+\subsubsection*{Monitoring (Metrics)}
+
+Sistem memerlukan pemantauan metrik untuk memastikan proses ingest telemetri, perhitungan ETA, dan API tetap beroperasi secara optimal. Beberapa opsi monitoring yang dipertimbangkan adalah:
+
+\begin{itemize}
+    \item Prometheus + Grafana\\
+    Solusi open-source standar industri. 
+    Mendukung pemantauan metrik seperti \textit{ingestion rate}, \textit{ETA latency}, dan \textit{API throughput}.
+
+    \item Datadog Metrics\\
+    Layanan \textit{managed} yang menawarkan integrasi cepat dan operasional sederhana. 
+    Cocok untuk acara jangka pendek yang membutuhkan setup minim.
+
+    \item Cloud-Native Monitoring (AWS CloudWatch / GCP Cloud Monitoring)\\
+    Integrasi langsung dengan layanan cloud tanpa perlu instalasi tambahan. 
+    Mendukung pengumpulan metrik, log, dan \textit{alerts} secara otomatis untuk VM, Kubernetes, maupun serverless.
+\end{itemize}
+
+\subsubsection*{Logging (Event \& System Logs)}
+
+Sistem membutuhkan mekanisme pencatatan log yang andal untuk debugging, audit, dan analisis event selama lomba berlangsung. Beberapa opsi yang dipertimbangkan antara lain:
+
+\begin{itemize}
+    \item ELK Stack (Elasticsearch + Logstash + Kibana)\\
+    Solusi populer yang sangat powerful untuk pencarian dan analisis log skala besar. 
+    Cocok untuk kebutuhan \textit{event tracking} yang kompleks.
+
+    \item Loki + Grafana\\
+    Pendekatan yang lebih ringan dengan fokus pada \textit{log streaming}. 
+    Sederhana, efisien, dan lebih hemat sumber daya dibanding ELK.
+
+    \item Cloud-Native Logging (AWS CloudWatch Logs / GCP Cloud Logging)\\
+    Integrasi bawaan dari platform cloud. 
+    Mendukung pengumpulan log otomatis dari VM, Kubernetes, maupun layanan serverless, 
+    dengan konfigurasi minimal dan \textit{managed retention}.
+\end{itemize}
+
+\subsubsection*{Tracing (Distributed Tracing)}
+
+Tracing diperlukan untuk menganalisis alur request antar layanan, terutama jika sistem menggunakan pendekatan microservice atau modul-modul terpisah. Beberapa opsi tracing yang dipertimbangkan:
+
+\begin{itemize}
+    \item Jaeger\\
+    Solusi open-source populer untuk \textit{distributed tracing}. 
+    Jaeger dapat diintegrasikan dengan OpenTelemetry sebagai layer instrumentasi, maupun dengan ekosistem Prometheus, Grafana, dan Loki (melalui Grafana Tempo atau dashboard Jaeger). 
+    Cocok untuk sistem dengan banyak layanan yang saling berkomunikasi.
+
+    \item Datadog APM\\
+    Layanan \textit{managed} dengan instalasi sederhana dan integrasi otomatis. 
+    Menyediakan tampilan \textit{end-to-end tracing} dengan konfigurasi minimal, ideal untuk event jangka pendek.
+
+    \item Cloud-Native Tracing (AWS X-Ray / GCP Cloud Trace)\\
+    Layanan tracing terkelola penuh dari penyedia cloud. 
+    Terintegrasi langsung dengan layanan cloud-native seperti serverless, load balancer, dan service mesh, 
+    sehingga mengurangi overhead operasional dalam pengelolaan infrastruktur tracing.
+\end{itemize}
+
+\subsubsection*{Model Perhitungan ETA Marathon}
+
+Beberapa pendekatan umum yang banyak digunakan pada aplikasi lari dan perangkat GPS dalam menghitung estimasi waktu tiba (ETA) pelari marathon.
+
+\begin{itemize}
+    \item Ekstrapolasi Pace Rata-Rata\\
+    Menggunakan pace rata-rata sejauh ini untuk memproyeksikan waktu tempuh sisa jarak. 
+    Sederhana dan cepat, namun tidak mempertimbangkan kelelahan atau variasi medan.
+
+    \item Model Pace Berbasis Segmen\\
+    Mengambil pace terbaru (mis.\ beberapa kilometer terakhir) dan memprediksi sisa jarak per segmen. 
+    Dapat memasukkan faktor pelambatan bertahap atau kondisi rute sehingga hasil lebih realistis.
+
+    \item Model Berbasis Data Historis\\
+    Menggabungkan data performa sebelumnya, kondisi lingkungan, serta profil rute dalam model regresi atau pembelajaran mesin. 
+    Lebih personal dan akurat, tetapi memerlukan data dan proses kalibrasi tambahan.
+\end{itemize}
+
+\subsubsection*{Integrasi Elevasi dalam Perhitungan ETA}
+
+Elevasi merupakan faktor penting dalam memproyeksikan performa pelari karena tanjakan dan turunan 
+dapat mengubah kebutuhan usaha secara signifikan. Beberapa pendekatan umum untuk memasukkan faktor ini adalah:
+
+\begin{itemize}
+    \item Grade-Adjusted Pace (GAP)\\
+    Mengoreksi pace aktual berdasarkan kemiringan lintasan 
+    sehingga waktu tempuh pada segmen menanjak atau menurun dapat disetarakan dengan kondisi datar. 
+    Hasil pace yang telah dikoreksi digunakan dalam model ETA apa pun.
+
+    \item Elevation-Corrected Segment ETA\\
+    Menghitung ETA per segmen dengan menambahkan penalti atau bonus waktu 
+    bergantung pada elevasi segmen tersebut. Pendekatan ini umum pada aplikasi tracking berbasis rute.
+\end{itemize}
+
+
 \subsection{Analisis Penentuan Solusi}
-\lipsum[9]
+Analisis penentuan solusi pada penelitian ini menggunakan metode Multi-Criteria Decision Analysis (MCDA) dengan pendekatan Weighted Scoring. Metode ini dipilih karena mampu mengevaluasi alternatif solusi teknis berdasarkan bobot kriteria yang relevan seperti performa, skalabilitas, reliabilitas, kompleksitas implementasi, dan biaya.
+
+\subsubsection*{Arsitektur Backend}
+\begin{itemize}
+    \item \textbf{Skalabilitas} (35\%): Kemampuan arsitektur untuk menangani peningkatan jumlah data dan pengguna secara efisien.
+    \item \textbf{Kompleksitas Pengembangan dan Operasional} (25\%): Tingkat kesulitan implementasi dan pemeliharaan sistem.
+    \item \textbf{Latensi Pemrosesan Telemetri} (25\%): Kecepatan arsitektur dalam memproses data telemetri secara real-time.
+    \item \textbf{Kesesuaian dengan Real-Time Event/Streaming} (15\%): Kemampuan arsitektur untuk mendukung aliran data berbasis event secara kontinu.
+\end{itemize}
+
+Penilaian tiap alternatif dilakukan dengan skala 1--10, di mana nilai lebih tinggi menunjukkan performa yang lebih baik. Hasil penilaian disajikan pada tabel berikut:
+
+\begin{table}[H]
+\centering
+\caption{Penilaian Tiap Alternatif Arsitektur Backend}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Arsitektur} & \textbf{Skalabilitas} & \textbf{Kompleksitas} & \textbf{Latensi} & \textbf{Real-Time Events} \\
+\hline
+Layered Architecture & 6 & 8 & 7 & 5 \\
+Modular Monolithic & 4 & 8 & 8 & 7 \\
+Microservices & 9 & 5 & 8 & 9 \\
+Event-Driven Architecture & 9 & 6 & 9 & 10 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan bobot kriteria, skor tertimbang tiap alternatif dihitung dengan rumus:
+\[
+\text{Skor Total} = \sum (\text{nilai kriteria} \times \text{bobot})
+\]
+
+\begin{table}[H]
+\centering
+\caption{Hasil Perhitungan Weighted Score Arsitektur Backend}
+\begin{tabular}{lcc}
+\hline
+\textbf{Arsitektur} & \textbf{Skor Total} & \textbf{Ranking} \\
+\hline
+Event-Driven Architecture & 8.40 & 1 \\
+Microservices & 7.75 & 2 \\
+Layered Architecture & 6.60 & 3 \\
+Modular Monolithic & 6.45 & 4 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan hasil MCDA weighted scoring, \textbf{Event-Driven Architecture} merupakan arsitektur backend yang paling sesuai untuk sistem ITB Ultra-Marathon. Pendekatan ini unggul dalam menangani data telemetri secara real-time, mendukung aliran event streaming, serta memiliki kemampuan skalabilitas tinggi. Meskipun kompleksitas pengembangan sedikit lebih tinggi dibandingkan Layered Architecture dan Modular Monolithic, keuntungan dalam performa real-time dan fleksibilitas penskalaan membuat Event-Driven Architecture menjadi pilihan optimal. Microservices menjadi alternatif kedua yang layak dipertimbangkan jika modularitas layanan terpisah menjadi prioritas. 
+
+\subsubsection*{Protokol Komunikasi Telemetri}
+
+Untuk menentukan protokol komunikasi telemetri yang paling sesuai dalam pengiriman data lokasi pelari ke backend secara real-time, digunakan pendekatan Multi-Criteria Decision Analysis (MCDA) dengan metode weighted scoring. Kriteria yang digunakan beserta bobotnya adalah sebagai berikut:
+
+\begin{itemize}
+    \item \textbf{Latensi Pengiriman Data} (35\%): Kecepatan protokol dalam menyampaikan data lokasi secara real-time.
+    \item \textbf{Efisiensi Jaringan} (30\%): Penggunaan bandwidth dan overhead protokol dalam kondisi jaringan terbatas.
+    \item \textbf{Kompleksitas Implementasi} (20\%): Tingkat kesulitan pengembangan dan integrasi protokol.
+    \item \textbf{Kestabilan Koneksi pada Kondisi Fluktuatif} (15\%): Kemampuan protokol menjaga koneksi stabil di area dengan kualitas jaringan tidak konsisten.
+\end{itemize}
+
+Penilaian tiap protokol dilakukan dengan skala 1--10, di mana nilai lebih tinggi menunjukkan performa yang lebih baik. Hasil penilaian disajikan pada tabel berikut:
+
+\begin{table}[H]
+\centering
+\caption{Penilaian Tiap Alternatif Protokol Komunikasi Telemetri}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Protokol} & \textbf{Latensi} & \textbf{Efisiensi Jaringan} & \textbf{Kompleksitas} & \textbf{Kestabilan Koneksi} \\
+\hline
+HTTPS REST Interval-based & 6 & 7 & 9 & 6 \\
+WebSocket & 9 & 8 & 7 & 7 \\
+MQTT & 8 & 9 & 8 & 9 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan bobot kriteria, skor tertimbang tiap alternatif dihitung dengan rumus:
+\[
+\text{Skor Total} = \sum (\text{nilai kriteria} \times \text{bobot})
+\]
+
+\begin{table}[H]
+\centering
+\caption{Hasil Perhitungan Weighted Score Protokol Komunikasi Telemetri}
+\begin{tabular}{lcc}
+\hline
+\textbf{Protokol} & \textbf{Skor Total} & \textbf{Ranking} \\
+\hline
+MQTT & 8.50 & 1 \\
+WebSocket & 8.10 & 2 \\
+HTTPS REST Interval-based & 7.05 & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan hasil MCDA weighted scoring, \textbf{MQTT} menjadi protokol komunikasi telemetri yang paling sesuai untuk sistem pelacakan ITB Ultra-Marathon. Protokol ini unggul dalam efisiensi jaringan dan kestabilan koneksi di area dengan kualitas internet yang berfluktuasi, serta memiliki latensi yang rendah dan kompleksitas implementasi yang moderat. WebSocket menjadi alternatif kedua yang baik untuk kebutuhan real-time dengan volume koneksi besar, sementara HTTPS REST Interval-based tetap layak dipertimbangkan untuk implementasi sederhana dan kompatibilitas platform yang tinggi.
+
+\subsubsection*{Penyimpanan Data Telemetri (Time-Series)}
+
+Untuk menentukan solusi basis data deret-waktu yang paling sesuai dalam menyimpan lokasi pelari, kecepatan, dan data telemetri lainnya, digunakan pendekatan Multi-Criteria Decision Analysis (MCDA) dengan metode weighted scoring. Kriteria yang digunakan beserta bobotnya adalah sebagai berikut:
+
+\begin{itemize}
+    \item \textbf{Performa Query} (40\%): Kecepatan eksekusi query, baik untuk analisis historis maupun per pelari/checkpoint.
+    \item \textbf{Skalabilitas} (30\%): Kemampuan basis data menangani peningkatan jumlah data dan pengguna secara efisien.
+    \item \textbf{Kemudahan Integrasi dan Pemeliharaan} (30\%): Tingkat kesulitan integrasi dengan sistem backend dan kompleksitas operasional.
+\end{itemize}
+
+Penilaian tiap alternatif dilakukan dengan skala 1--10, di mana nilai lebih tinggi menunjukkan performa yang lebih baik. Hasil penilaian disajikan pada tabel berikut:
+
+\begin{table}[H]
+\centering
+\caption{Penilaian Tiap Alternatif Basis Data Time-Series}
+\begin{tabular}{lccc}
+\hline
+\textbf{Basis Data} & \textbf{Performa Query} & \textbf{Skalabilitas} & \textbf{Integrasi \& Pemeliharaan} \\
+\hline
+TimescaleDB & 8 & 7 & 8 \\
+InfluxDB & 9 & 8 & 7 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan bobot kriteria, skor tertimbang tiap alternatif dihitung dengan rumus:
+\[
+\text{Skor Total} = \sum (\text{nilai kriteria} \times \text{bobot})
+\]
+
+\begin{table}[H]
+\centering
+\caption{Hasil Perhitungan Weighted Score Basis Data Time-Series}
+\begin{tabular}{lcc}
+\hline
+\textbf{Basis Data} & \textbf{Skor Total} & \textbf{Ranking} \\
+\hline
+InfluxDB & 8.20 & 1 \\
+TimescaleDB & 7.75 & 2 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan hasil MCDA weighted scoring, \textbf{InfluxDB} merupakan pilihan basis data deret-waktu yang paling sesuai untuk penyimpanan telemetri ITB Ultra-Marathon. InfluxDB unggul dalam performa query untuk analisis historis dan mampu diskalakan dengan baik seiring pertumbuhan jumlah data. TimescaleDB tetap menjadi alternatif yang layak dipertimbangkan jika kebutuhan analisis fleksibel per pelari atau checkpoint lebih diutamakan, serta jika integrasi dengan ekosistem PostgreSQL menjadi prioritas.
+
+\subsubsection*{Platform Deployment}
+
+Untuk menentukan platform deployment yang paling sesuai bagi sistem ITB Ultra-Marathon, digunakan pendekatan Multi-Criteria Decision Analysis (MCDA) dengan metode weighted scoring. Kriteria yang digunakan beserta bobotnya adalah sebagai berikut:
+
+\begin{itemize}
+    \item \textbf{Fleksibilitas Konfigurasi} (30\%): Kemampuan platform untuk mendukung konfigurasi khusus dan pengaturan lingkungan sesuai kebutuhan.
+    \item \textbf{Skalabilitas} (35\%): Kemampuan platform menangani peningkatan beban, baik dari sisi jumlah pengguna maupun volume data telemetri.
+    \item \textbf{Kompleksitas Operasional} (20\%): Tingkat kesulitan dalam pengelolaan, pemeliharaan, dan monitoring sistem.
+    \item \textbf{Efisiensi Biaya} (15\%): Perbandingan biaya operasional relatif terhadap performa dan kapasitas yang diperoleh.
+\end{itemize}
+
+Penilaian tiap alternatif dilakukan dengan skala 1--10, di mana nilai lebih tinggi menunjukkan performa yang lebih baik. Hasil penilaian disajikan pada tabel berikut:
+
+\begin{table}[H]
+\centering
+\caption{Penilaian Tiap Alternatif Platform Deployment}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Platform} & \textbf{Fleksibilitas} & \textbf{Skalabilitas} & \textbf{Kompleksitas Operasional} & \textbf{Efisiensi Biaya} \\
+\hline
+Cloud VM (IaaS) & 9 & 7 & 6 & 6 \\
+Container Orchestration (Kubernetes) & 8 & 9 & 7 & 7 \\
+Serverless & 6 & 8 & 9 & 8 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan bobot kriteria, skor tertimbang tiap alternatif dihitung dengan rumus:
+\[
+\text{Skor Total} = \sum (\text{nilai kriteria} \times \text{bobot})
+\]
+
+\begin{table}[H]
+\centering
+\caption{Hasil Perhitungan Weighted Score Platform Deployment}
+\begin{tabular}{lcc}
+\hline
+\textbf{Platform} & \textbf{Skor Total} & \textbf{Ranking} \\
+\hline
+Container Orchestration (Kubernetes) & 8.50 & 1 \\
+Serverless & 7.95 & 2 \\
+Cloud VM (IaaS) & 7.25 & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan hasil MCDA weighted scoring, \textbf{Container Orchestration (Kubernetes)} menjadi pilihan platform deployment yang paling sesuai untuk sistem ITB Ultra-Marathon. Platform ini unggul dalam hal skalabilitas dan fleksibilitas konfigurasi, serta memudahkan pengelolaan layanan berskala besar. Serverless merupakan alternatif yang baik untuk modul yang berjalan tidak kontinu, dengan efisiensi biaya tinggi dan kompleksitas operasional rendah. Cloud VM (IaaS) tetap layak dipertimbangkan jika kontrol penuh terhadap lingkungan dan konfigurasi menjadi prioritas, meskipun skalabilitas dan efisiensi biayanya lebih terbatas dibandingkan opsi lainnya.
+
+\subsubsection*{Monitoring Metrics}
+
+Untuk memastikan proses ingest telemetri, perhitungan ETA, dan API beroperasi secara optimal, sistem memerlukan pemantauan metrik yang efektif. Pendekatan Multi-Criteria Decision Analysis (MCDA) dengan metode weighted scoring digunakan untuk menilai beberapa opsi monitoring. Kriteria yang digunakan beserta bobotnya adalah sebagai berikut:
+
+\begin{itemize}
+    \item \textbf{Kemudahan Integrasi} (30\%): Tingkat kesederhanaan integrasi sistem monitoring dengan platform yang digunakan.
+    \item \textbf{Kelengkapan Fitur Metrik} (35\%): Kemampuan sistem untuk memantau berbagai metrik, termasuk ingestion rate, ETA latency, dan API throughput.
+    \item \textbf{Kompleksitas Operasional} (20\%): Tingkat kesulitan dalam pengelolaan, konfigurasi, dan pemeliharaan monitoring.
+    \item \textbf{Biaya} (15\%): Efisiensi biaya dalam penggunaan sistem monitoring, termasuk lisensi dan operasional.
+\end{itemize}
+
+Penilaian tiap alternatif dilakukan dengan skala 1--10, di mana nilai lebih tinggi menunjukkan performa yang lebih baik. Hasil penilaian disajikan pada tabel berikut:
+
+\begin{table}[H]
+\centering
+\caption{Penilaian Tiap Alternatif Sistem Monitoring Metrics}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Sistem Monitoring} & \textbf{Kemudahan Integrasi} & \textbf{Kelengkapan Fitur Metrik} & \textbf{Kompleksitas Operasional} & \textbf{Biaya} \\
+\hline
+Prometheus + Grafana & 7 & 9 & 7 & 8 \\
+Datadog Metrics & 9 & 8 & 9 & 6 \\
+Cloud-Native Monitoring & 8 & 8 & 8 & 7 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan bobot kriteria, skor tertimbang tiap alternatif dihitung dengan rumus:
+\[
+\text{Skor Total} = \sum (\text{nilai kriteria} \times \text{bobot})
+\]
+
+\begin{table}[H]
+\centering
+\caption{Hasil Perhitungan Weighted Score Sistem Monitoring Metrics}
+\begin{tabular}{lcc}
+\hline
+\textbf{Sistem Monitoring} & \textbf{Skor Total} & \textbf{Ranking} \\
+\hline
+Prometheus + Grafana & 8.15 & 1 \\
+Cloud-Native Monitoring & 7.85 & 2 \\
+Datadog Metrics & 7.80 & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan hasil MCDA weighted scoring, \textbf{Prometheus + Grafana} merupakan pilihan sistem monitoring yang paling sesuai untuk ITB Ultra-Marathon. Solusi ini unggul dalam hal kelengkapan fitur metrik dan memiliki kompleksitas operasional yang moderat, sehingga memungkinkan pemantauan ingest telemetri, perhitungan ETA, dan API secara efektif. Cloud-Native Monitoring menjadi alternatif kedua dengan kemudahan integrasi dan biaya yang seimbang, sedangkan Datadog Metrics cocok untuk acara jangka pendek yang membutuhkan setup cepat meskipun biaya relatif lebih tinggi.
+
+\subsubsection*{Logging (Event \& System Logs)}
+
+Untuk mendukung debugging, audit, dan analisis event selama lomba ITB Ultra-Marathon, sistem memerlukan mekanisme pencatatan log yang andal. Pendekatan Multi-Criteria Decision Analysis (MCDA) dengan metode weighted scoring digunakan untuk menilai beberapa opsi sistem logging. Kriteria yang digunakan beserta bobotnya adalah sebagai berikut:
+
+\begin{itemize}
+    \item \textbf{Kemampuan Analisis dan Pencarian Log} (35\%): Kapabilitas sistem dalam melakukan pencarian, agregasi, dan analisis log secara efektif.
+    \item \textbf{Kompleksitas Operasional} (25\%): Tingkat kesulitan dalam instalasi, konfigurasi, pemeliharaan, dan monitoring sistem logging.
+    \item \textbf{Integrasi dengan Infrastruktur} (20\%): Kemudahan integrasi dengan VM, Kubernetes, serverless, dan layanan lain yang digunakan.
+    \item \textbf{Efisiensi Sumber Daya / Biaya} (20\%): Penggunaan sumber daya dan biaya operasional relatif terhadap performa sistem.
+\end{itemize}
+
+Penilaian tiap alternatif dilakukan dengan skala 1--10, di mana nilai lebih tinggi menunjukkan performa yang lebih baik. Hasil penilaian disajikan pada tabel berikut:
+
+\begin{table}[H]
+\centering
+\caption{Penilaian Tiap Alternatif Sistem Logging}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Sistem Logging} & \textbf{Analisis \& Pencarian} & \textbf{Kompleksitas Operasional} & \textbf{Integrasi Infrastruktur} & \textbf{Efisiensi Sumber Daya / Biaya} \\
+\hline
+ELK Stack & 9 & 6 & 7 & 6 \\
+Loki + Grafana & 7 & 8 & 8 & 8 \\
+Cloud-Native Logging & 8 & 8 & 9 & 7 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan bobot kriteria, skor tertimbang tiap alternatif dihitung dengan rumus:
+\[
+\text{Skor Total} = \sum (\text{nilai kriteria} \times \text{bobot})
+\]
+
+\begin{table}[H]
+\centering
+\caption{Hasil Perhitungan Weighted Score Sistem Logging}
+\begin{tabular}{lcc}
+\hline
+\textbf{Sistem Logging} & \textbf{Skor Total} & \textbf{Ranking} \\
+\hline
+Cloud-Native Logging & 8.15 & 1 \\
+Loki + Grafana & 7.75 & 2 \\
+ELK Stack & 7.65 & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan hasil MCDA weighted scoring, \textbf{Cloud-Native Logging} menjadi pilihan sistem logging yang paling sesuai untuk ITB Ultra-Marathon. Solusi ini menawarkan integrasi yang mudah dengan infrastruktur yang digunakan, kompleksitas operasional moderat, serta kemampuan analisis log yang memadai. Loki + Grafana menjadi alternatif kedua yang efisien dan hemat sumber daya, sedangkan ELK Stack cocok untuk kebutuhan analisis log yang kompleks, tetapi memerlukan sumber daya dan konfigurasi lebih tinggi.
+
+
+\subsubsection*{Tracing (Distributed Tracing)}
+
+Untuk menganalisis alur request antar layanan, terutama pada arsitektur microservices, sistem memerlukan mekanisme distributed tracing yang efektif. Pendekatan Multi-Criteria Decision Analysis (MCDA) dengan metode weighted scoring digunakan untuk menilai beberapa opsi. Kriteria dan bobotnya adalah sebagai berikut:
+
+\begin{itemize}
+    \item \textbf{Kemampuan End-to-End Tracing} (35\%): Kapabilitas sistem untuk melacak alur request antar layanan secara lengkap.
+    \item \textbf{Kemudahan Integrasi} (25\%): Tingkat kesederhanaan integrasi dengan layanan dan sistem monitoring/metrik yang digunakan.
+    \item \textbf{Kompleksitas Operasional} (20\%): Tingkat kesulitan instalasi, konfigurasi, dan pemeliharaan sistem tracing.
+    \item \textbf{Biaya / Efisiensi} (20\%): Efisiensi biaya relatif terhadap fitur dan kapasitas tracing yang diberikan.
+\end{itemize}
+
+Penilaian tiap alternatif dilakukan dengan skala 1--10, di mana nilai lebih tinggi menunjukkan performa yang lebih baik. Hasil penilaian disajikan pada tabel berikut:
+
+\begin{table}[H]
+\centering
+\caption{Penilaian Tiap Alternatif Sistem Tracing}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Sistem Tracing} & \textbf{End-to-End Tracing} & \textbf{Kemudahan Integrasi} & \textbf{Kompleksitas Operasional} & \textbf{Biaya / Efisiensi} \\
+\hline
+Jaeger & 9 & 7 & 7 & 7 \\
+Datadog APM & 8 & 9 & 9 & 6 \\
+Cloud-Native Tracing & 8 & 8 & 8 & 7 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan bobot kriteria, skor tertimbang tiap alternatif dihitung dengan rumus:
+\[
+\text{Skor Total} = \sum (\text{nilai kriteria} \times \text{bobot})
+\]
+
+\begin{table}[H]
+\centering
+\caption{Hasil Perhitungan Weighted Score Sistem Tracing}
+\begin{tabular}{lcc}
+\hline
+\textbf{Sistem Tracing} & \textbf{Skor Total} & \textbf{Ranking} \\
+\hline
+Jaeger & 8.10 & 1 \\
+Cloud-Native Tracing & 7.90 & 2 \\
+Datadog APM & 7.80 & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan hasil MCDA weighted scoring, \textbf{Jaeger} menjadi pilihan utama untuk sistem distributed tracing ITB Ultra-Marathon. Solusi ini unggul dalam kemampuan end-to-end tracing antar layanan dan integrasi dengan ekosistem observabilitas seperti Prometheus, Grafana, dan Loki. Cloud-Native Tracing menjadi alternatif kedua yang baik dengan kemudahan integrasi dan kompleksitas moderat, sedangkan Datadog APM cocok untuk setup cepat dan event jangka pendek meskipun biaya relatif lebih tinggi.
+
+
+\subsubsection*{Model Perhitungan ETA Marathon}
+
+Untuk menentukan model perhitungan estimasi waktu tiba (ETA) pelari marathon yang paling sesuai, digunakan pendekatan Multi-Criteria Decision Analysis (MCDA) dengan metode weighted scoring. Kriteria yang digunakan beserta bobotnya adalah sebagai berikut:
+
+\begin{itemize}
+    \item \textbf{Akurasi Prediksi} (40\%): Kemampuan model memprediksi ETA secara realistis, termasuk mempertimbangkan variasi pace dan kondisi rute.
+    \item \textbf{Kompleksitas Implementasi} (25\%): Tingkat kesulitan pengembangan, integrasi, dan kalibrasi model.
+    \item \textbf{Kebutuhan Data} (20\%): Ketersediaan data yang dibutuhkan untuk menjalankan model secara efektif.
+    \item \textbf{Kecepatan Perhitungan} (15\%): Waktu yang dibutuhkan model untuk menghitung ETA secara real-time.
+\end{itemize}
+
+Penilaian tiap alternatif dilakukan dengan skala 1--10, di mana nilai lebih tinggi menunjukkan performa yang lebih baik. Hasil penilaian disajikan pada tabel berikut:
+
+\begin{table}[H]
+\centering
+\caption{Penilaian Tiap Alternatif Model Perhitungan ETA}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Model ETA} & \textbf{Akurasi Prediksi} & \textbf{Kompleksitas Implementasi} & \textbf{Kebutuhan Data} & \textbf{Kecepatan Perhitungan} \\
+\hline
+Ekstrapolasi Pace Rata-Rata & 6 & 9 & 9 & 9 \\
+Model Pace Berbasis Segmen & 8 & 7 & 7 & 8 \\
+Model Berbasis Data Historis & 9 & 5 & 6 & 6 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan bobot kriteria, skor tertimbang tiap alternatif dihitung dengan rumus:
+\[
+\text{Skor Total} = \sum (\text{nilai kriteria} \times \text{bobot})
+\]
+
+\begin{table}[H]
+\centering
+\caption{Hasil Perhitungan Weighted Score Model ETA}
+\begin{tabular}{lcc}
+\hline
+\textbf{Model ETA} & \textbf{Skor Total} & \textbf{Ranking} \\
+\hline
+Model Pace Berbasis Segmen & 7.70 & 1 \\
+Model Berbasis Data Historis & 7.05 & 2 \\
+Ekstrapolasi Pace Rata-Rata & 7.05 & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan hasil MCDA weighted scoring, \textbf{Model Pace Berbasis Segmen} menjadi pilihan utama untuk perhitungan ETA pelari marathon. Model ini menawarkan akurasi yang baik dengan kompleksitas implementasi moderat, serta dapat memperhitungkan variasi pace dan kondisi rute per segmen. Model Berbasis Data Historis memberikan prediksi yang sangat akurat namun memerlukan data tambahan dan proses kalibrasi, sedangkan Ekstrapolasi Pace Rata-Rata sederhana dan cepat, tetapi kurang mempertimbangkan kelelahan atau variasi medan.
+
+
+\subsubsection*{Integrasi Elevasi dalam Perhitungan ETA}
+
+Untuk memperhitungkan faktor elevasi yang mempengaruhi performa pelari, digunakan pendekatan Multi-Criteria Decision Analysis (MCDA) dengan metode weighted scoring. Kriteria yang digunakan beserta bobotnya adalah sebagai berikut:
+
+\begin{itemize}
+    \item \textbf{Akurasi Perhitungan ETA} (40\%): Kemampuan pendekatan untuk menghasilkan estimasi waktu tiba yang realistis dengan mempertimbangkan tanjakan dan turunan.
+    \item \textbf{Kompleksitas Implementasi} (30\%): Tingkat kesulitan integrasi pendekatan ke dalam model ETA yang digunakan.
+    \item \textbf{Kebutuhan Data Elevasi} (20\%): Ketersediaan data elevasi yang diperlukan dan kemudahan penggunaannya.
+    \item \textbf{Kecepatan Perhitungan} (10\%): Waktu yang dibutuhkan pendekatan untuk menghitung ETA secara real-time.
+\end{itemize}
+
+Penilaian tiap alternatif dilakukan dengan skala 1--10, di mana nilai lebih tinggi menunjukkan performa yang lebih baik. Hasil penilaian disajikan pada tabel berikut:
+
+\begin{table}[H]
+\centering
+\caption{Penilaian Tiap Alternatif Pendekatan Integrasi Elevasi}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Pendekatan} & \textbf{Akurasi ETA} & \textbf{Kompleksitas Implementasi} & \textbf{Kebutuhan Data} & \textbf{Kecepatan Perhitungan} \\
+\hline
+Grade-Adjusted Pace (GAP) & 7 & 8 & 8 & 9 \\
+Elevation-Corrected Segment ETA & 9 & 6 & 7 & 7 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan bobot kriteria, skor tertimbang tiap alternatif dihitung dengan rumus:
+\[
+\text{Skor Total} = \sum (\text{nilai kriteria} \times \text{bobot})
+\]
+
+\begin{table}[H]
+\centering
+\caption{Hasil Perhitungan Weighted Score Pendekatan Integrasi Elevasi}
+\begin{tabular}{lcc}
+\hline
+\textbf{Pendekatan} & \textbf{Skor Total} & \textbf{Ranking} \\
+\hline
+Elevation-Corrected Segment ETA & 7.95 & 1 \\
+Grade-Adjusted Pace (GAP) & 7.70 & 2 \\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan hasil MCDA weighted scoring, \textbf{Elevation-Corrected Segment ETA} menjadi pendekatan yang lebih unggul untuk integrasi faktor elevasi dalam perhitungan ETA pelari marathon. Pendekatan ini memberikan akurasi prediksi yang lebih tinggi dengan mempertimbangkan penalti atau bonus waktu per segmen. Grade-Adjusted Pace (GAP) tetap layak dipertimbangkan karena kompleksitas implementasinya lebih rendah dan perhitungannya lebih cepat, namun akurasi prediksi sedikit lebih rendah dibandingkan pendekatan per segmen.
